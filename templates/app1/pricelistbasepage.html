@@ -1,0 +1,44 @@
+{% extends 'app1/base.html' %}
+{% block body %}
+    {% load static %}
+
+<style>
+
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {background-color: #4CAF50;} 
+.button2 {background-color: #008CBA;}
+
+.flex-parent {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+
+</style>
+
+<div class="flex-parent jc-center">
+  <button class="button button1"><a href="{% url 'addprice' %}" >CREATE</button>
+</div>
+
+<div class="flex-parent jc-center">
+  <button class="button button2"><a href="{% url 'viewprice' %}">VIEW</button>
+</div>
+
+
+
+
+{% endblock %}
