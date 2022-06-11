@@ -32634,9 +32634,9 @@ def materialcreate(request):
         sku=request.POST['sku']
         hsn=request.POST['hsn']
         quantity=request.POST['quantity']
-        manufactuaring_date=request.POST['manufactuaring_date']
+        manufacturing_date=request.POST['manufacturing_date']
         expiry_date = request.POST['expiry_date']
-        rdata = production(productname=productname,sku=sku,hsn=hsn,quantity=quantity,manufactuaring_date=manufactuaring_date,expiry_date=expiry_date)
+        rdata = production(productname=productname,sku=sku,hsn=hsn,quantity=quantity,manufacturing_date=manufacturing_date,expiry_date=expiry_date)
         rdata.save()
         
         return redirect('materialview')
@@ -32672,6 +32672,25 @@ def viewprice(request):
    return render(request,'app1/viewprice.html',{'mdata':mdata}) 
 
 
-   
+def updatepage(request,pk):
+     product=production.objects.get(id=pk)
+     return render(request,'update.html',{'product':product})
+  #Editing student details
+def updatematerial(request,pk):
+     if request.method=='POST':
+          product=production.objects.get(id=pk)
+          product.productname = request.POST.get('productname') 
+          product.sku = request.POST.get('sku') 
+          product.hsn = request.POST.get('hsn') 
+          product.quantity = request.POST.get('quantity') 
+          product.manufacturing_date=request.POST.get('manufacturing_date') 
+          product.expiry_date=request.POST.get('expiry_date') 
+          product.save()
+          return redirect('viewmaterial')
+          return render(request,'editmaterial.html')  
+def deletematerial(request,pk):
+    product=product.objects.get(id=pk)
+    product.delete()
+    return redirect('viewmaterial')           
       
      
