@@ -39,7 +39,16 @@
                                     <td class="pt-4">{{ m.productname }}</td>
                                     <td class="pt-4">{{ m.sku }}</td>
                                     <td class="pt-4">{{ m.price}}</td>
-                                    
+                                    <td>
+                                    <div class="dropdown">
+                                     <button type="button" class="btn btn-outline-info dropdown-toggle text-grey" data-toggle="dropdown">Actions
+                                     </button>
+                                     <div class="dropdown-menu" style="background-color: white;">
+                                     <a href="editprice/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>EDIT</b></i></a>
+                                     <a href="deleteprice/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>DELETE</b></i></a>
+                                     </div>
+                                    </div>
+                                  </td>
                                    
                             </td> 
                                    

@@ -8,39 +8,59 @@
                 </h1>
                 <div class="row">
                     <div class="col-sm-3"></div>
-                <form method="POST" action="/updatematerial/{{product.pk}}" enctype="multipart/form-data">    
-                <div class="col-md-3">
-                <label class="col-form-label">
-                Product Name </label>
-                <input type="text" name="productname" value="{{ product.productname}}" class="form-control">
-              </div>
-              <div class="col-md-3">
-                <label class="col-form-label">
-                SKU </label>
-                <input type="text" name="sku" value="{{ product.sku}}" class="form-control">
-              </div>
-              <div class="col-md-3">
-                <label class="col-form-label">
-                HSN </label>
-                <input type="text" name="hsn" value="{{ product.hsn}}" class="form-control">
-              </div>
-              <div class="col-md-3">
-                <label class="col-form-label">
-                Quantity </label>
-                <input type="text" name="quantity" value="{{ product.quantity}}" class="form-control">
-              </div>
-              <div class="col-md-3">
-                <label class="col-form-label">
-                Manufactuaring Date </label>
-                <input type="text" name="manufactuaring_date" value="{{ product.manufactuaring_date}}" class="form-control">
-              </div>
-              <div class="col-md-3">
-                <label class="col-form-label">
-               Expiry Date</label>
-                <input type="text" name="expiry_date" value="{{ product.expiry_date}}" class="form-control">
-              </div>
-               <button type="Submit" class="btn btn-success">Update</button>
-              <input type="Submit" value="Previous page">
+                    
+                     <div class="col-sm-6">
+                <form method="POST" action="/updatematerial/{{mdata.id}}"  enctype="multipart/form-data">
+
+                <div class="container" id="three">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-4">
+                                            <label for="productname">Product Name</label>
+                                            <input type="text" name="productname"  value="{{ mdata.productname}}"class="form-control" id="productname"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="sku">SKU</label>
+                                            <input type="number" name="sku"  value="{{ mdata.sku}}" class="form-control" id="sku"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="hsn">HSN</label>
+                                            <input type="number" name="hsn"  value="{{ mdata.hsn}}" class="form-control" id="hsn"
+                                                   style="width: 100%;" >
+                                        </div>
+                                    </div>
+                </div> 
+                <br>
+                <div class="container" id="three">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-4">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="number" name="quantity"  value="{{ mdata.quantity}}"class="form-control" id="quantity"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="manufacturing_date">Manufacturing Date</label>
+                                            <input type="date" name="manufacturing_date"  value="{{ mdata.manufacturing_date}}" class="form-control" id="manufactuaring_date"
+                                                   placeholder=" "
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="expiry_date">Expiry Date</label>
+                                            <input type="date" name="expiry_date"  value="{{ mdata.expiry_date}}" class="form-control" id="expiry_date"
+                                                   placeholder=" "
+                                                   style="width: 100%;" >
+                                        </div>
+                                    </div>
+                </div> 
+                <br>
+                
+                <button type="submit" class="btn btn-success mt-3 w-100">EDIT</button>
+              
             </form>  
 {% endblock %}               
 

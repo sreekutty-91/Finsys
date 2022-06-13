@@ -37,11 +37,17 @@
                                     <td class="pt-4">{{ m.quantity}}</td>
                                     <td class="pt-4">{{ m.manufacturing_date}}</td>
                                     <td class="pt-4">{{ m.expiry_date}}</td>
-                                   
-                                    {% comment %} <td>
-                                       <a href="{% url 'updatematerial' m.id %}">update</a>
-                                       <a href= "{% url 'deletematerial' m.id%}" button onclick="alert('Are you sure want to delete?')">Delete</button>
-                                    </td>  {% endcomment %}
+                                   <td>
+                                    <div class="dropdown">
+                                     <button type="button" class="btn btn-outline-info dropdown-toggle text-grey" data-toggle="dropdown">Actions
+                                     </button>
+                                     <div class="dropdown-menu" style="background-color: white;">
+                                     <a href="updatematerial/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>EDIT</b></i></a>
+                                     <a href="deletematerial/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>DELETE</b></i></a>
+                                     </div>
+                                    </div>
+                                  </td>
+                                    
                                 </tr>
                                 {% endfor %}
                             

@@ -32671,14 +32671,16 @@ def viewprice(request):
    mdata = production.objects.all()
    return render(request,'app1/viewprice.html',{'mdata':mdata}) 
 
+def editmaterial(request,id):
+    mdata=production.objects.get(id=id)
+    return render(request,'editmaterial.html',{'mdata':mdata})
 
-def updatepage(request,pk):
-     product=production.objects.get(id=pk)
-     return render(request,'update.html',{'product':product})
-  #Editing student details
-def updatematerial(request,pk):
-     if request.method=='POST':
-          product=production.objects.get(id=pk)
+
+
+
+def updatematerial(request,id):
+    if request.method=='POST':
+          product=production.objects.get(id=id)
           product.productname = request.POST.get('productname') 
           product.sku = request.POST.get('sku') 
           product.hsn = request.POST.get('hsn') 
@@ -32686,11 +32688,39 @@ def updatematerial(request,pk):
           product.manufacturing_date=request.POST.get('manufacturing_date') 
           product.expiry_date=request.POST.get('expiry_date') 
           product.save()
-          return redirect('viewmaterial')
-          return render(request,'editmaterial.html')  
-def deletematerial(request,pk):
-    product=product.objects.get(id=pk)
+          return redirect('materialview')
+    return render(request,'app1/editmaterial.html')  
+          
+          
+def deletematerial(request,id):
+    product=production.objects.get(id=id)
     product.delete()
-    return redirect('viewmaterial')           
+    return redirect('materialview') 
+
+def editprice(request,id):
+    if request.method=='POST':
+             mdata=production.objects.get(id=id)
+             mdata.productname=request.POST.get('productname') 
+             mdata.sku=request.POST.get('sku') 
+             mdata.price=request.POST.get('price') 
+             mdata.save()
+             return redirect('viewprice')
+    return render(request,'app1/editprice.html')
+
+def deleteprice(request,id):
+    mdata=production.objects.get(id=id)
+    mdata.delete()
+    return redirect('viewprice') 
+
+
+
+
+
+
+
+
+
+
+
       
      

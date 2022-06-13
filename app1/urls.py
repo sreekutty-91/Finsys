@@ -360,10 +360,14 @@ urlpatterns = [
     re_path(r'^addprice$',views.addprice,name='addprice'),
     re_path(r'^viewprice$',views.viewprice,name='viewprice'),
 
-    re_path(r'^updatepage/(?P<pk>\d+)$',views.updatepage,name='updatepage'),
-    re_path(r'^updatematerial/(?P<pk>\d+)$',views.updatematerial,name='updatematerial'),
-     
-    re_path(r'^deletematerial/(?P<pk>\d+)$',views.deletematerial,name='deletematerial'),
+   
+    re_path(r'^updatematerial/(?P<id>\d+)$',views.updatematerial,name='updatematerial'),
+    re_path(r'^deletematerial/(?P<id>\d+)$',views.deletematerial,name='deletematerial'),
+
+    re_path(r'^editprice/(?P<id>\d+)$',views.editprice,name='editprice'),
+    re_path(r'^deleteprice/(?P<id>\d+)$',views.deleteprice,name='deleteprice'),
+
+
 
 
 

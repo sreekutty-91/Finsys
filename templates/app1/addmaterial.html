@@ -8,21 +8,70 @@
                 </h1>
                 <div class="row">
                     <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
+                    
+                     <div class="col-sm-6">
                         <form method="post" action="{% url 'materialcreate' %}" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <input type="text" name="productname" class="form-control mt-3" placeholder="Productname">
-                            <input type="number" name="sku" class="form-control mt-3" placeholder="SKU">
-                            <input type="number" name="hsn" class="form-control mt-3" placeholder="HSN">
-                            <input type="number" name="quantity" class="form-control mt-3" placeholder="Quantity">
-                            <label for="manufactuaring_date">Manufactuaring Date*</label>
-                            <input type="date" name="manufacturing_date" class="form-control" id="manufacturing_date" placeholder=" ">
-                            <label for="expiry_date">Expiry Date*</label>
-                            <input type="date" name="expiry_date" class="form-control" id="expiry_date" placeholder=" ">
-                            <button type="submit" class="btn btn-success mt-3 w-100">CREATE</button>
+                            <div class="container" id="two">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-6">
+                                            <label for="productname">Product Name</label>
+                                            <input type="text" name="productname" class="form-control" id="productname"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="sku">SKU</label>
+                                            <input type="number" name="sku" class="form-control" id="sku"
+                                                   style="width: 100%;" >
+                                        </div>
+                                    </div>
+                            </div>         
+                                        
+                           <div class="container" id="two">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-6">
+                                            <label for="hsn">HSN</label>
+                                            <input type="number" name="hsn" class="form-control" id="hsn"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="number" name="quantity" class="form-control" id="quantity"
+                                                   placeholder=" "
+                                                   style="width: 100%;" >
+                                        </div>
+                                    
+                                    </div>
+                            </div>
+                            <br>         
+                            <div class="container" id="two">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-6">
+                                            <label for="manufacturing_date">Manufacturing Date*</label>
+                                            <input type="date" name="manufacturing_date" class="form-control" id="manufacturing_date"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label for="expiry_date">Expiry Date*</label>
+                                            <input type="date" name="expiry_date" class="form-control" id="expiry_date" 
+                                                   placeholder=""
+                                                   style="width: 100%;" >
+                                        </div>
+                                    </div>
+                            </div>
+                            <br>         
+                            
+                               <button type="submit" class="btn btn-success mt-3 w-100">CREATE</button>
                         </form>
                     </div>
-                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6"></div>
                 </div>
             </div>
 {% endblock %} 

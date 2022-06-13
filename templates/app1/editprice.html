@@ -1,43 +1,39 @@
 {% extends 'app1/base.html' %}
 {% block body %}
     {% load static %}
-    <div class="container mt-5">
-                
+    
+            <div class="container mt-5">
+                <h1 class="alert alert-success text-center">
+                     PRICE LIST
+                </h1>
                 <div class="row">
                     <div class="col-sm-3"></div>
-    
-            
-                    <div class="col-sm-6">
-                        <form method="post" action="{% url 'addprice' %}" enctype="multipart/form-data">
-                            {% csrf_token %}
-
-                            <div class="container" id="three">
+                    
+                     <div class="col-sm-6">
+                <form method="POST" action="/editprice/{{mdata.id}}" enctype="multipart/form-data">    
+                <div class="container" id="three">
                                     
                                     <div class="row" style="display: inline-flex;">
                                         <div class="col-sm-4">
                                             <label for="productname">Product Name</label>
-                                            <input type="text" name="productname" class="form-control" id="productname"
+                                            <input type="text" name="productname"  value="{{ mdata.productname}}"class="form-control" id="productname"
                                                    placeholder=" "
                                                    style="width: 100%;">
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="sku">SKU</label>
-                                            <input type="number" name="sku" class="form-control" id="sku"
+                                            <input type="number" name="sku"  value="{{ mdata.sku}}" class="form-control" id="sku"
                                                    style="width: 100%;" >
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="price">PRICE</label>
-                                            <input type="number" name="price" class="form-control" id="price"
+                                            <input type="number" name="price"  value="{{ mdata.price}}" class="form-control" id="price"
                                                    style="width: 100%;" >
                                         </div>
                                     </div>
-                           </div>         
-
-                           <button type="submit" class="btn btn-success mt-3 w-100">CREATE</button>
-                        
-                        </form>
-                    </div>
-                    <div class="col-sm-3"></div>
-                </div>
-            </div>
-{% endblock %} 
+                </div> 
+              
+            <button type="submit" class="btn btn-success mt-3 w-100">EDIT</button>   
+              
+            </form>  
+{% endblock %}               
