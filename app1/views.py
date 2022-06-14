@@ -11,6 +11,7 @@ import json
 from django.http.response import JsonResponse
 from django.contrib.auth.decorators import login_required
 import itertools
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -32642,10 +32643,38 @@ def materialcreate(request):
         return redirect('materialview')
         
     return render(request,'app1/addmaterial.html')
+@csrf_exempt
+def add_data(request):
+    if request.method == "POST":
+              productid=request.POST['id']
+              productname=request.POST['productname']
+              sku=request.POST['sku']
+              quantity=int(request.POST['quantity'])
+              price=int(request.POST['price'])
+              x=quantity
+              y=price
+              amount=int(request.POST[x*y])
+              if(productid == ''):
+                   rdata = production(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
+              else:
+                rdata=production(productid=id,productname=productname,sku=sku,quantity=quantity,price=price,amount=amount) 
+            
+              rdata.save() 
+              x = production.objects.values()
+              print(x)
+              x_data = list(x)
+              print("---")
+              print(x_data)
+              return JsonResponse({'terms':'add','x_data':x_data})
+    else:
+        return JsonResponse({'terms':0})    
+
 
 def materialview(request):
    mdata = production.objects.all()
    return render(request,'app1/viewmaterial.html',{'mdata':mdata}) 
+
+
 
 
 
@@ -32671,31 +32700,40 @@ def viewprice(request):
    mdata = production.objects.all()
    return render(request,'app1/viewprice.html',{'mdata':mdata}) 
 
+
 def editmaterial(request,id):
     mdata=production.objects.get(id=id)
-    return render(request,'editmaterial.html',{'mdata':mdata})
+    return render(request,'app1/editmaterial.html',{'mdata':mdata})
 
 
 
 
 def updatematerial(request,id):
     if request.method=='POST':
-          product=production.objects.get(id=id)
-          product.productname = request.POST.get('productname') 
-          product.sku = request.POST.get('sku') 
-          product.hsn = request.POST.get('hsn') 
-          product.quantity = request.POST.get('quantity') 
-          product.manufacturing_date=request.POST.get('manufacturing_date') 
-          product.expiry_date=request.POST.get('expiry_date') 
-          product.save()
+          mdata=production.objects.get(id=id)
+          mdata.productname = request.POST.get('productname') 
+          mdata.sku = request.POST.get('sku') 
+          mdata.hsn = request.POST.get('hsn') 
+          mdata.quantity = request.POST.get('quantity') 
+          mdata.manufacturing_date=request.POST.get('manufacturing_date') 
+          mdata.expiry_date=request.POST.get('expiry_date') 
+          mdata.save()
           return redirect('materialview')
     return render(request,'app1/editmaterial.html')  
           
           
 def deletematerial(request,id):
-    product=production.objects.get(id=id)
-    product.delete()
+    mdata=production.objects.get(id=id)
+    mdata.delete()
     return redirect('materialview') 
+
+def editpricepage(request,id):
+    mdata=production.objects.get(id=id)
+    return render(request,'app1/editprice.html',{'pdata':pdata})
+
+
+
+
 
 def editprice(request,id):
     if request.method=='POST':

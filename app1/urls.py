@@ -353,6 +353,7 @@ urlpatterns = [
 
     re_path(r'^materialmasterhome$',views.materialmasterhome,name='materialmasterhome'),
     re_path(r'^materialcreate$',views.materialcreate,name='materialcreate'),
+    re_path(r'^add_data$',views.add_data,name='add_data'),
     re_path(r'^materialview$',views.materialview,name='materialview'),
 
 
@@ -364,6 +365,7 @@ urlpatterns = [
     re_path(r'^updatematerial/(?P<id>\d+)$',views.updatematerial,name='updatematerial'),
     re_path(r'^deletematerial/(?P<id>\d+)$',views.deletematerial,name='deletematerial'),
 
+    re_path(r'^editpricepage/(?P<id>\d+)$',views.editpricepage,name='editpricepage'),
     re_path(r'^editprice/(?P<id>\d+)$',views.editprice,name='editprice'),
     re_path(r'^deleteprice/(?P<id>\d+)$',views.deleteprice,name='deleteprice'),
 

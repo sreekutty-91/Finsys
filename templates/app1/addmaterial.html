@@ -74,4 +74,186 @@
                     <div class="col-sm-6"></div>
                 </div>
             </div>
-{% endblock %} 
+
+<div class="container bg-light mt-5">
+        <h2 class="text-center alert alert-secondary">Manufacture</h2>
+  
+    <div class="row">
+        <div class="col-sm-4">
+            <h4 class="text-center alert alert-dark">Components</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">SKU</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    {% for r in rdata %}
+                    <tr>
+                        <td class="pt-4">{{ r.productname }}</td>
+                        <td class="pt-4">{{ r.sku }}</td>
+                        <td class="pt-4">{{ r.quantity}}</td>
+                        <td class="pt-4">{{ r.price}}</td>
+                        <td class="pt-4">{{ r.amount}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+        </div> 
+
+
+
+
+    
+    <div class="col-sm-8">
+            <h4 class="text-center alert alert-dark">Coproducts/Scrap</h4>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">SKU</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    {% for r in rdata %}
+                    <tr>
+                        <td class="pt-4">{{ r.productname }}</td>
+                        <td class="pt-4">{{ r.sku }}</td>
+                        <td class="pt-4">{{ r.quantity}}</td>
+                        <td class="pt-4">{{ r.price}}</td>
+                        <td class="pt-4">{{ r.amount}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        //......*INSERT  DATA *.........
+        $("#btnsave").click(function(){
+            console.log("create button clicked")
+            output = "";
+            let pnmid = $("#rdataid").val();
+            let nm = $("#productnameid").val();
+            let sku = $("#skuid").val(); 
+            let quantity = $("#quantityid").val();
+            let price = $("#priceid").val();
+            let amount = $("#amountid").val();
+            if(nm == ""){
+                console.log("please enter a productname")
+            } else if(sku == ""){
+                console.log("please enter a sku")
+            } else if(quantity == ""){
+                console.log("please enter a quantity")
+            } else if(price == ""){
+                console.log("please enter a price")
+            } else if(amount == ""){
+                console.log("please enter a amount")
+                    
+            
+            } else{
+                //console.log(nm);
+                //console.log(em);
+                //console.log(pw);
+                mydata = { productid:pnmid, productname:nm, sku:sku,quantity:quantity,price:price, amount:amount };
+                $.ajax({
+                    url : "{% url 'add_data' %}",
+                    method : "POST",
+                    data : mydata,
+                    dataType : "json",   //--->for show
+                    success : function(data){
+                        console.log(data);
+                        a = data.x_data
+                        if(data.terms == "add"){
+                            console.log("form submission success");
+                            //console.log(data.x_data)
+                            //console.log(x)
+                            for (i=0;i<a.length;i++){
+                                output += "<tr><td>" + a[i].id + 
+                                            "</td><td>"+ a[i].productname + 
+                                            "</td><td>" + a[i].sku + 
+                                            "</td><td>"+ a[i].quantity +
+                                            "</td><td>"+ a[i].price +
+                                            "</td><td>"+ a[i].amount +
+                                "</td>";
+                            }
+                            //$("#tbody").html=output;  --->submit and show data after reload page
+                            $("#tbody").html(output);  //--->submit and show data without page reload
+                            $("#prsnid").val();
+                            $("form")[0].reset();
+                        }
+                        if(data.terms == 0){
+                            console.log("Failed")
+                            $("#prsnid").val();
+                            $("form")[0].reset();
+                        }
+                    },
+                });
+            }
+        });
+
+        {% comment %} //......*DELETE DATA*......
+        $("tbody").on("click",".btn-del",function(){
+            console.log("Clicked dlt btn");
+            let id=$(this).attr("data-sid");
+            console.log(id)
+            mydata = {pid : id}
+            mythis = this;
+            $.ajax({
+                url : "{% url 'delete_data' %}",
+                method : "POST",
+                data : mydata,
+                success : function(data){
+                    console.log(data);
+                    if(data.status == 1){
+                        console.log("dlt success");
+                        //$(this).closest("tr").fadeOut();  -->data dlted with page reloading
+                        $(mythis).closest("tr").fadeOut();  //-->data dlted without page reloading..
+                    }
+                    if(data.status == 0){
+                        console.log("unsuccess");
+                    }
+                },
+            });
+        });
+
+        //....*EDIT DATA*...
+        $("tbody").on("click",".btn-edit",function(){
+            console.log("Clicked edit btn");
+            let id=$(this).attr("data-sid");
+            
+            console.log(id)
+            mydata = {pid : id}
+            $.ajax({
+                url : "{% url 'edit_data' %}",
+                method : "POST",
+                data : mydata,
+                dataType : "Json",
+                success : function(data){
+                    console.log(data);
+                    $("#prsnid").val(data.id);
+                    $("#nameid").val(data.name);
+                    $("#emailid").val(data.email);
+                    $("#passwordid").val(data.password);
+                },
+            });
+        });
+    </script>
+</body>
+</html>
+  {% endcomment %}
+
+{% endblock %}  
