@@ -361,7 +361,7 @@ urlpatterns = [
     re_path(r'^addprice$',views.addprice,name='addprice'),
     re_path(r'^viewprice$',views.viewprice,name='viewprice'),
 
-   
+    re_path(r'^editmaterial/(?P<id>\d+)$',views.editmaterial,name='editmaterial'),
     re_path(r'^updatematerial/(?P<id>\d+)$',views.updatematerial,name='updatematerial'),
     re_path(r'^deletematerial/(?P<id>\d+)$',views.deletematerial,name='deletematerial'),
 

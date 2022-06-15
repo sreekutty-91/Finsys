@@ -32693,8 +32693,29 @@ def addprice(request):
         rdata.save()
         
         return redirect('viewprice')
+    ls=[]
+    var1=production.objects.all() 
+    # var2=inventory.objects.all()
+    for i in var1:
+        ls.append(i.productname)
+        # print("i.name")
+    # for j in var2:
+    #     ls.append(j.name)
+    print(ls)
+    # toda = date.today()
+    # s1 = toda.strftime("%Y-%m-%d")
+    # ks=[]
+    # var3=employee.objects.all()
+    # for k in var3:
+    #     ks.append(k.department)
+    #     print(ks)
         
-    return render(request,'app1/addprice.html')
+    context={
+        
+        'obj':ls,
+        
+    }
+    return render(request,'app1/addprice.html',context)
 
 def viewprice(request):
    mdata = production.objects.all()
@@ -32702,8 +32723,9 @@ def viewprice(request):
 
 
 def editmaterial(request,id):
-    mdata=production.objects.get(id=id)
-    return render(request,'app1/editmaterial.html',{'mdata':mdata})
+    var=production.objects.get(id=id)
+    context={'var':var}
+    return render(request,'app1/editmaterial.html',context)
 
 
 
