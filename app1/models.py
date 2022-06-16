@@ -1091,6 +1091,10 @@ class production(models.Model):
     sku = models.CharField(max_length=255, default='', blank=True)
     hsn = models.CharField(max_length=255, default='', blank=True)
     quantity = models.CharField(max_length=255, default='', blank=True)
-    price = models.CharField(max_length=255, default='', blank=True)
     manufacturing_date = models.CharField(max_length=255, default='', blank=True)
     expiry_date = models.CharField(max_length=255, default='', blank=True)
+
+class pricetable(models.Model):
+    productname = models.CharField(max_length=255, default='', blank=True)
+    sku = models.CharField(max_length=255, default='', blank=True)
+    price= models.CharField(max_length=255, default='', blank=True)

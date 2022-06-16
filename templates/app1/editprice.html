@@ -10,24 +10,24 @@
                     <div class="col-sm-3"></div>
                     
                      <div class="col-sm-6">
-                <form method="POST" action="/editprice/{{pdata.id}}" enctype="multipart/form-data">    
+                <form method="POST" action="/editprice/{{mdata.id}}" enctype="multipart/form-data">    
                 <div class="container" id="three">
                                     
                                     <div class="row" style="display: inline-flex;">
                                         <div class="col-sm-4">
                                             <label for="productname">Product Name</label>
-                                            <input type="text" name="productname"  value="{{ pdata.productname}}"class="form-control" id="productname"
+                                            <input type="text" name="productname"  value="{{ mdata.productname}}"class="form-control" id="productname"
                                                    placeholder=" "
                                                    style="width: 100%;">
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="sku">SKU</label>
-                                            <input type="number" name="sku"  value="{{ pdata.sku}}" class="form-control" id="sku"
+                                            <input type="number" name="sku"  value="{{ mdata.sku}}" class="form-control" id="sku"
                                                    style="width: 100%;" >
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="price">PRICE</label>
-                                            <input type="number" name="price"  value="{{ pdata.price}}" class="form-control" id="price"
+                                            <input type="number" name="price"  value="{{ mdata.price}}" class="form-control" id="price"
                                                    style="width: 100%;" >
                                         </div>
                                     </div>

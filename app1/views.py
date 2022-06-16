@@ -32689,7 +32689,7 @@ def addprice(request):
         productname=request.POST['productname']
         sku=request.POST['sku']
         price = request.POST['price']
-        rdata = production(productname=productname,sku=sku,price=price)
+        rdata = pricetable(productname=productname,sku=sku,price=price)
         rdata.save()
         
         return redirect('viewprice')
@@ -32718,7 +32718,7 @@ def addprice(request):
     return render(request,'app1/addprice.html',context)
 
 def viewprice(request):
-   mdata = production.objects.all()
+   mdata = pricetable.objects.all()
    return render(request,'app1/viewprice.html',{'mdata':mdata}) 
 
 
@@ -32732,26 +32732,26 @@ def editmaterial(request,id):
 
 def updatematerial(request,id):
     if request.method=='POST':
-          mdata=production.objects.get(id=id)
-          mdata.productname = request.POST.get('productname') 
-          mdata.sku = request.POST.get('sku') 
-          mdata.hsn = request.POST.get('hsn') 
-          mdata.quantity = request.POST.get('quantity') 
-          mdata.manufacturing_date=request.POST.get('manufacturing_date') 
-          mdata.expiry_date=request.POST.get('expiry_date') 
-          mdata.save()
+          var=production.objects.get(id=id)
+          var.productname = request.POST.get('productname') 
+          var.sku = request.POST.get('sku') 
+          var.hsn = request.POST.get('hsn') 
+          var.quantity = request.POST.get('quantity') 
+          var.manufacturing_date=request.POST.get('manufacturing_date') 
+          var.expiry_date=request.POST.get('expiry_date') 
+          var.save()
           return redirect('materialview')
     return render(request,'app1/editmaterial.html')  
           
           
 def deletematerial(request,id):
-    mdata=production.objects.get(id=id)
-    mdata.delete()
+    var=production.objects.get(id=id)
+    var.delete()
     return redirect('materialview') 
 
 def editpricepage(request,id):
-    mdata=production.objects.get(id=id)
-    return render(request,'app1/editprice.html',{'pdata':pdata})
+    mdata=pricetable.objects.get(id=id)
+    return render(request,'app1/editprice.html',{'mdata':mdata})
 
 
 
@@ -32759,7 +32759,7 @@ def editpricepage(request,id):
 
 def editprice(request,id):
     if request.method=='POST':
-             mdata=production.objects.get(id=id)
+             mdata=pricetable.objects.get(id=id)
              mdata.productname=request.POST.get('productname') 
              mdata.sku=request.POST.get('sku') 
              mdata.price=request.POST.get('price') 
@@ -32768,7 +32768,7 @@ def editprice(request,id):
     return render(request,'app1/editprice.html')
 
 def deleteprice(request,id):
-    mdata=production.objects.get(id=id)
+    mdata=pricetable.objects.get(id=id)
     mdata.delete()
     return redirect('viewprice') 
 
