@@ -32689,18 +32689,24 @@ def addprice(request):
         productname=request.POST['productname']
         sku=request.POST['sku']
         price = request.POST['price']
-        rdata = pricetable(productname=productname,sku=sku,price=price)
+        rdata = pricetable(productname=productname,sk=sku,price=price)
         rdata.save()
         
         return redirect('viewprice')
     ls=[]
     var1=production.objects.all() 
+    var2=noninventory.objects.all()
+    var3=inventory.objects.all()
     # var2=inventory.objects.all()
     for i in var1:
         ls.append(i.productname)
         # print("i.name")
-    # for j in var2:
-    #     ls.append(j.name)
+    for j in var2:
+        ls.append(j.name)
+    for  k in var3:
+        ls.append(k.name)       
+    
+    
     print(ls)
     # toda = date.today()
     # s1 = toda.strftime("%Y-%m-%d")
@@ -32714,7 +32720,46 @@ def addprice(request):
         
         'obj':ls,
         
-    }
+       }
+    sk=[]
+    
+    try:
+            var1=noninventory.objects.get(name=pname)
+            # print('noninventery'+str(var1.sku))
+            print(var1.sku)
+            sk=(var1.sku)
+            
+            
+    except:
+            print('not in non invo')
+            # pass
+    try:
+            var2=inventory.objects.get(name=pname)
+            # print('invetery'+str(var1.sku))
+            print(var2.sku)
+            sk=(var2.sku)
+    except:
+            print('not in invontry ')
+                # messages.info(
+                #     request, 'Data Not Valid')
+                
+            # print(pro_name)
+            print(sk)
+    try:
+            var3=production.objects.get(name=productname)
+            # print('invetery'+str(var1.sku))
+            print(var3.sku)
+            sk=(var3.sku)
+    except:
+            print('not in production ')
+                # messages.info(
+                #     request, 'Data Not Valid')
+                
+            # print(pro_name)
+            print(sk) 
+    
+            
+        
     return render(request,'app1/addprice.html',context)
 
 def viewprice(request):
