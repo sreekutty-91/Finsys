@@ -353,7 +353,6 @@ urlpatterns = [
 
     re_path(r'^materialmasterhome$',views.materialmasterhome,name='materialmasterhome'),
     re_path(r'^materialcreate$',views.materialcreate,name='materialcreate'),
-    re_path(r'^add_data$',views.add_data,name='add_data'),
     re_path(r'^materialview$',views.materialview,name='materialview'),
 
 

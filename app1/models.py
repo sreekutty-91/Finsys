@@ -1098,3 +1098,7 @@ class pricetable(models.Model):
     productname = models.CharField(max_length=255, default='', blank=True)
     sku = models.CharField(max_length=255, default='', blank=True)
     price= models.CharField(max_length=255, default='', blank=True)
+
+class  manufacture(models.Model):
+    inventory=models.ForeignKey(inventory,on_delete=models.CASCADE) 
+    noninventory=models.ForeignKey(noninventory,on_delete=models.CASCADE)   

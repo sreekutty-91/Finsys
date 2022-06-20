@@ -32643,31 +32643,29 @@ def materialcreate(request):
         return redirect('materialview')
         
     return render(request,'app1/addmaterial.html')
-@csrf_exempt
-def add_data(request):
-    if request.method == "POST":
-              productid=request.POST['id']
-              productname=request.POST['productname']
-              sku=request.POST['sku']
-              quantity=int(request.POST['quantity'])
-              price=int(request.POST['price'])
-              x=quantity
-              y=price
-              amount=int(request.POST[x*y])
-              if(productid == ''):
-                   rdata = production(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
-              else:
-                rdata=production(productid=id,productname=productname,sku=sku,quantity=quantity,price=price,amount=amount) 
-            
-              rdata.save() 
-              x = production.objects.values()
-              print(x)
-              x_data = list(x)
-              print("---")
-              print(x_data)
-              return JsonResponse({'terms':'add','x_data':x_data})
-    else:
-        return JsonResponse({'terms':0})    
+def manufacture(request):
+    if request.method == 'POST':
+        productname=request.POST['productname']
+        sku=request.POST['sku']
+        quantity=request.POST['quantity']
+        price = request.POST['price']
+        amount=request.POST['amount']
+        rdata = manufacture(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
+        rdata.save()
+    
+        
+    var1=inventory.objects.all()
+    var2=noninventory.objects.all()
+
+    context={
+        
+        'obj':var1,
+        'obj1':var2,
+        
+       }
+    return render(request,'app1/addmaterial.html',context)   
+
+
 
 
 def materialview(request):
