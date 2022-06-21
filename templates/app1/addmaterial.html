@@ -71,57 +71,54 @@
                                <button type="submit" class="btn btn-success mt-3 w-100">CREATE</button>
                         </form>
                     </div>
-                    <div class="col-sm-6"></div>
-                </div>
-            </div>
-
-<div class="container bg-light mt-5">
+              
+       <div class="container bg-light mt-5">
         <h2 class="text-center alert alert-secondary">Manufacture</h2>
-  
-    <div class="row">
-        <div class="col-sm-4">
+         <div class="row">   
+        
+    
+            <div class="col-sm-6">
             <h4 class="text-center alert alert-dark">Components</h4>
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Product Name</th>
+                        <th scope="col">ProductName</th>
                         <th scope="col">SKU</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Amount</th>
                     </tr>
                 </thead>
-               
-                   <tbody id="tbody">
-                    {% for r in rdata %}
+                <tbody id="tbody">
+                    {% comment %} {% for r in rdata %} {% endcomment %}
                     <tr>
-                        <td class="pt-4">{{var1.name }}</td>
-                        <td class="pt-4">{{ var1.sku }}</td>
-                        <td class="pt-4">{{var1.initialqty}}</td>
-                        <td class="pt-4">{{ var1. salesprice}}</td>
-                        <td class="pt-4">{{ var1.amount}}</td>
+                       <td>
+                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{inventory.name}}">
+                        </td>
+                        <td>
+                        <input type="number" id="qty1" class="form-control tax" name="tax1"  style="background-color: #2f516f;" value="{{inventory.sku}}">
+                        </td>
+                        <td>
+                        <input type="number" class="form-control tax" name="tax1" id="" style="background-color: #2f516f;" value="">
+                        </td>
+                        <td>
+                        <input type="number" id="unit1" class="form-control tax" name="tax1"  style="background-color: #2f516f;" value="{{inventory.salesprice}}">
+                        </td>
+                        <td>
+                        <input type="number" id="total1" class="form-control tax" name="tax1"  style="background-color: #2f516f;" value="">
+                        </td> 
                         
                     </tr>
-                    
-                    </tr>
-                   
+                    {% comment %} {% endfor %} {% endcomment %}
                 </tbody>
             </table>
-            
         </div> 
-
-
-
-
-    
-    <div class="col-sm-8">
+        <div class="col-sm-6">
             <h4 class="text-center alert alert-dark">Coproducts/Scrap</h4>
-            <br>
-            
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Product Name</th>
+                        <th scope="col">ProductName</th>
                         <th scope="col">SKU</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
@@ -131,20 +128,32 @@
                 <tbody id="tbody">
                     {% for r in rdata %}
                     <tr>
-                        <td class="pt-4">{{ r.productname }}</td>
-                        <td class="pt-4">{{ r.sku }}</td>
-                        <td class="pt-4">{{ r.quantity}}</td>
-                        <td class="pt-4">{{ r.price}}</td>
-                        <td class="pt-4">{{ r.amount}}</td>
+                        <td>
+                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                        </td>
+                        <td>
+                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                        </td>
+                        <td>
+                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                        </td>
+                        <td>
+                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                        </td>
+                        <td>
+                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
+                        </td>
+                        
+                        
+                        
+
                         
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-    </div>
-    </div>
+        </div>
+        </div>
 
-    
-  
-{% endblock %}  
+{%endblock%}        

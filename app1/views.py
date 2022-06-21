@@ -31649,7 +31649,7 @@ def cash_flow_analyzer(request):
     bilal3 = expences.objects.raw(
         'select * from app1_expences where paymdate between %s and %s', [fromdatem1, todatem1, ])
     for be in bilal3:
-        if be.paymmethod=='Cash' and be.category1 == 'SGST write-off':
+        if be.paymmethod=='Cash'and be.category1 == 'SGST write-off':
             kingsd_3.append(be.totamt)
             kingsd3+=float(be.totamt)
     context['kingsd3'] = kingsd3
@@ -32645,26 +32645,83 @@ def materialcreate(request):
     return render(request,'app1/addmaterial.html')
 def manufacture(request):
     if request.method == 'POST':
-        productname=request.POST['productname']
+        productname=request.POST['pname']
         sku=request.POST['sku']
-        quantity=request.POST['quantity']
-        price = request.POST['price']
-        amount=request.POST['amount']
-        rdata = manufacture(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
-        rdata.save()
-    
-        
-    var1=inventory.objects.all()
-    var2=noninventory.objects.all()
+        qty=request.POST['initialqty']
+        price = request.POST['salesprice']
+        amount=request.POST(int(qty*price))
 
+        rdata = manufacture(pname=productname,sku=sku,initialqty=qty,salesprice=price,amount=amount)
+        rdata.save()
+        
+        return redirect('materialview')
+    ls=[]
+    var1=manufacture.objects.all() 
+    # var2=noninventory.objects.all()
+    # var3=inventory.objects.all()
+    # var2=inventory.objects.all()
+    for i in var1:
+        ls.append(i.name)
+        ls.append(i.sku)
+        ls.append(i.initialqty)
+        ls.append(i.salesprice)
+        ls.append(i.amount)   
+    
+    
+    print(ls)
+    # toda = date.today()
+    # s1 = toda.strftime("%Y-%m-%d")
+    # ks=[]
+    # var3=employee.objects.all()
+    # for k in var3:
+    #     ks.append(k.department)
+    #     print(ks)
+        
     context={
         
-        'obj':var1,
-        'obj1':var2,
+        'obj':ls,
         
        }
-    return render(request,'app1/addmaterial.html',context)   
-
+    sk=[]
+    
+    try:
+            var1=noninventory.objects.get(name=pname)
+            # print('noninventery'+str(var1.sku))
+            print(var1.sku)
+            sk=(var1.sku)
+            
+            
+    except:
+            print('not in non invo')
+            # pass
+    try:
+            var2=inventory.objects.get(name=pname)
+            # print('invetery'+str(var1.sku))
+            print(var2.sku)
+            sk=(var2.sku)
+    except:
+            print('not in invontry ')
+                # messages.info(
+                #     request, 'Data Not Valid')
+                
+            # print(pro_name)
+            print(sk)
+    try:
+            var3=production.objects.get(name=productname)
+            # print('invetery'+str(var1.sku))
+            print(var3.sku)
+            sk=(var3.sku)
+    except:
+            print('not in production ')
+                # messages.info(
+                #     request, 'Data Not Valid')
+                
+            # print(pro_name)
+            print(sk) 
+    
+            
+        
+#    
 
 
 
@@ -32687,7 +32744,7 @@ def addprice(request):
         productname=request.POST['productname']
         sku=request.POST['sku']
         price = request.POST['price']
-        rdata = pricetable(productname=productname,sk=sku,price=price)
+        rdata = pricetable(productname=productname,sku=sku,price=price)
         rdata.save()
         
         return redirect('viewprice')
