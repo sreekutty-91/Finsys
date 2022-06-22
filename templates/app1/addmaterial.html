@@ -90,26 +90,414 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
-                    {% comment %} {% for r in rdata %} {% endcomment %}
+                   
                     <tr>
                        <td>
-                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="{{inventory.name}}">
-                        </td>
-                        <td>
-                        <input type="number" id="qty1" class="form-control tax" name="tax1"  style="background-color: #2f516f;" value="{{inventory.sku}}">
-                        </td>
-                        <td>
-                        <input type="number" class="form-control tax" name="tax1" id="" style="background-color: #2f516f;" value="">
-                        </td>
-                        <td>
-                        <input type="number" id="unit1" class="form-control tax" name="tax1"  style="background-color: #2f516f;" value="{{inventory.salesprice}}">
-                        </td>
-                        <td>
-                        <input type="number" id="total1" class="form-control tax" name="tax1"  style="background-color: #2f516f;" value="">
-                        </td> 
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
                         
-                    </tr>
-                    {% comment %} {% endfor %} {% endcomment %}
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                 <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                 <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                 <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                 <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                 <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                
+                    
                 </tbody>
             </table>
         </div> 
@@ -123,33 +511,280 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Amount</th>
-                    </tr>
+                    </tr> 
                 </thead>
                 <tbody id="tbody">
-                    {% for r in rdata %}
-                    <tr>
-                        <td>
-                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
-                        </td>
-                        <td>
-                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
-                        </td>
-                        <td>
-                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
-                        </td>
-                        <td>
-                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
-                        </td>
-                        <td>
-                        <input type="text" class="form-control tax" name="tax1" id="tax1" style="background-color: #2f516f;" value="">
-                        </td>
+                  <tr>
+                       <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
                         
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
                         
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
                         
-
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
                         
-                    </tr>
-                    {% endfor %}
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
+                              
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>  
+                    
                 </tbody>
             </table>
         </div>

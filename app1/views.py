@@ -32643,88 +32643,9 @@ def materialcreate(request):
         return redirect('materialview')
         
     return render(request,'app1/addmaterial.html')
-def manufacture(request):
-    if request.method == 'POST':
-        productname=request.POST['pname']
-        sku=request.POST['sku']
-        qty=request.POST['initialqty']
-        price = request.POST['salesprice']
-        amount=request.POST(int(qty*price))
-
-        rdata = manufacture(pname=productname,sku=sku,initialqty=qty,salesprice=price,amount=amount)
-        rdata.save()
-        
-        return redirect('materialview')
-    ls=[]
-    var1=manufacture.objects.all() 
-    # var2=noninventory.objects.all()
-    # var3=inventory.objects.all()
-    # var2=inventory.objects.all()
-    for i in var1:
-        ls.append(i.name)
-        ls.append(i.sku)
-        ls.append(i.initialqty)
-        ls.append(i.salesprice)
-        ls.append(i.amount)   
-    
-    
-    print(ls)
-    # toda = date.today()
-    # s1 = toda.strftime("%Y-%m-%d")
-    # ks=[]
-    # var3=employee.objects.all()
-    # for k in var3:
-    #     ks.append(k.department)
-    #     print(ks)
-        
-    context={
-        
-        'obj':ls,
-        
-       }
-    sk=[]
-    
-    try:
-            var1=noninventory.objects.get(name=pname)
-            # print('noninventery'+str(var1.sku))
-            print(var1.sku)
-            sk=(var1.sku)
-            
-            
-    except:
-            print('not in non invo')
-            # pass
-    try:
-            var2=inventory.objects.get(name=pname)
-            # print('invetery'+str(var1.sku))
-            print(var2.sku)
-            sk=(var2.sku)
-    except:
-            print('not in invontry ')
-                # messages.info(
-                #     request, 'Data Not Valid')
-                
-            # print(pro_name)
-            print(sk)
-    try:
-            var3=production.objects.get(name=productname)
-            # print('invetery'+str(var1.sku))
-            print(var3.sku)
-            sk=(var3.sku)
-    except:
-            print('not in production ')
-                # messages.info(
-                #     request, 'Data Not Valid')
-                
-            # print(pro_name)
-            print(sk) 
-    
-            
-        
-#    
 
 
-
+    
 def materialview(request):
    mdata = production.objects.all()
    return render(request,'app1/viewmaterial.html',{'mdata':mdata}) 
@@ -32776,6 +32697,7 @@ def addprice(request):
         'obj':ls,
         
        }
+       
     sk=[]
     
     try:
