@@ -354,6 +354,9 @@ urlpatterns = [
     re_path(r'^materialmasterhome$',views.materialmasterhome,name='materialmasterhome'),
     re_path(r'^materialcreate$',views.materialcreate,name='materialcreate'),
     re_path(r'^materialview$',views.materialview,name='materialview'),
+    re_path(r'^search_products$',views.search_products,name='search_products'),
+    
+    
 
 
     re_path(r'^pricelisthome$',views.pricelisthome,name='pricelisthome'),

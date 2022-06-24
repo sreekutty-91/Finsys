@@ -1,0 +1,17 @@
+{% extends 'app1/base.html' %}
+ {% block body %} 
+     <center>
+     {% if searched %}
+           <h1>You Searched For {{searched}}</h1>
+           <br/>
+           {% for product in products %}
+           <a href="{% url 'show-product' product.id %}">{{product}}</a><br/>
+           {% endfor %}
+    {% else%}
+           <h1>Result not found</h1>
+    {% endif %}  
+
+{% endblock %}         
+
+
+

@@ -32714,12 +32714,19 @@ def manufacture(request):
         
     return render(request,'app1/addmaterial.html',context)
 
-
-
     
 def materialview(request):
    mdata = production.objects.all()
    return render(request,'app1/viewmaterial.html',{'mdata':mdata}) 
+
+def search_products(request):
+    if request.method == "POST":
+        searched=request.POST['searched']
+        products=production.objects.filter(productname__contains=searched)
+        return render(request,'app1/search_products.html',{'searched':searched,'products':products})
+    else:
+        return render(request,'app1/search_products.html',{})
+
 
 
 
