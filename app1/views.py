@@ -12,6 +12,9 @@ from django.http.response import JsonResponse
 from django.contrib.auth.decorators import login_required
 import itertools
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import ListView
+from django.db.models import Q
+
 
 
 def index(request):
@@ -32719,14 +32722,15 @@ def materialview(request):
    mdata = production.objects.all()
    return render(request,'app1/viewmaterial.html',{'mdata':mdata}) 
 
-def search_products(request):
-    if request.method == "POST":
-        searched=request.POST['searched']
-        products=production.objects.filter(productname__contains=searched)
-        return render(request,'app1/search_products.html',{'searched':searched,'products':products})
-    else:
-        return render(request,'app1/search_products.html',{})
-
+def searchBar(request):
+    if request.method=='GET':
+        query=request.GET.get('query')
+        if query:
+            products=production.objects.filter(productname__contains=query)
+            return render(request,'app1/searchbar.html',{'products':products}) 
+        else:
+            print("No results found")
+            return render(request,'app1/searchbar.html',{})
 
 
 
@@ -32819,7 +32823,20 @@ def addprice(request):
 
 def viewprice(request):
    mdata = pricetable.objects.all()
-   return render(request,'app1/viewprice.html',{'mdata':mdata}) 
+   return render(request,'app1/viewprice.html',{'mdata':mdata})
+
+def searchBarprice(request):
+  if request.method=='GET':
+        query=request.GET.get('query')
+        if query:
+
+           products=pricetable.objects.filter(productname__contains=query)
+           return render(request,'app1/searchbarprice.html',{'products':products})
+        else:
+            print("No results found")
+            return render(request,'app1/searchbar.html',{})
+   
+
 
 
 def editmaterial(request,id):

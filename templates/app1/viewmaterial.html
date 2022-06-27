@@ -2,10 +2,9 @@
 {% block body %}
     {% load static %}
 
-    <form class="d-flex" method=POST action="{% url 'search_products' % }"> 
-    {% csrf_token %}
-      <input class="form-control me-2" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-secondary" type="submit" >Search</button>
+   <form action="{% url 'search' %}" method="get" class="d-flex"> 
+      <input class="form-control me-2" type="text"  name="query" placeholder="Search..." aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <br>
      
