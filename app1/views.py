@@ -12,8 +12,7 @@ from django.http.response import JsonResponse
 from django.contrib.auth.decorators import login_required
 import itertools
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView
-from django.db.models import Q
+
 
 
 
@@ -32647,29 +32646,31 @@ def materialcreate(request):
         
     return render(request,'app1/addmaterial.html')
 
-
-def manufacture(request):
+def addcomponents(request):
     if request.method == 'POST':
         productname=request.POST['productname']
         sku=request.POST['sku']
         quantity=request.POST['quantity']
         price = request.POST['price']
-        amount=int(quantity)*int(price)
-        print(amount)
-        rdata = manufacture(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
-        rdata.save()
+        x=int(quantity)*int(price)
+        amount=x
+        print(x)
+        amount=request.POST['amount']
+        cdata = manufacture(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
+        cdata.save()
         
-        
+        return redirect('addmaterial')
     ls=[]
+    var1=inventory.objects.all() 
+    var2=noninventory.objects.all()
     
-    var1=noninventory.objects.all()
-    var2=inventory.objects.all()
-    
-    
+   
     for i in var1:
         ls.append(i.name)
-    for  j in var2:
-        ls.append(j.name)       
+        # print("i.name")
+    for j in var2:
+        ls.append(j.name)
+        
     
     
     print(ls)
@@ -32711,13 +32712,15 @@ def manufacture(request):
                 
             # print(pro_name)
             print(sk)
-   
+    
     
             
         
     return render(request,'app1/addmaterial.html',context)
 
-    
+
+
+
 def materialview(request):
    mdata = production.objects.all()
    return render(request,'app1/viewmaterial.html',{'mdata':mdata}) 

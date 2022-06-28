@@ -90,10 +90,66 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
+
                    
                     <tr>
                       <td>
+                      
+                        <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>     
+                        
+                    
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                    <td>
                               
+                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                        <option value=" " selected>Select Product</option>
+                        {% for inv in inventory %}
+                        {% if id == inventoryid %}
+                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        {% for inv in noninventory %}
+                        {% if id == noninventoryid %}
+                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
+                        {% endif %}
+                        {% endfor %}
+                        
+                      </select>
+                    </td>
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                </tr>
+                <tr>
+                 <td>
                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
                          <option value=" " selected>Select Product</option>
                         {% for inv in inventory %}
@@ -107,64 +163,11 @@
                         {% endif %}
                         {% endfor %}
                         </select>
+                   </td>     
                              
                         
-                    
-                    </td>
-                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
-                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
-                    
-                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
-                      <span id="qtyspan" class='text-muted'></span>
-                    </td>
-                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
-                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
-                </tr>
-                <tr>
-                    <td>
-                              
-                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for inv in inventory %}
-                        {% if id == inventoryid %}
-                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for inv in noninventory %}
-                        {% if id == noninventoryid %}
-                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>
-                    </td>
-                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
-                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
-                    
-                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
-                      <span id="qtyspan" class='text-muted'></span>
-                    </td>
-                    <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
-                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
-                </tr>
-                <tr>
-                    <td>
-                              
-                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for inv in inventory %}
-                        {% if id == inventoryid %}
-                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for inv in noninventory %}
-                        {% if id == noninventoryid %}
-                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>
-                    </td>
+                     
+                         
                     <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
                     ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
                     
@@ -257,13 +260,61 @@
                 </tr>
                 
                  
-                    <tr><td><div class="bs-example">
+                    
+              <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        var max_fields = 30; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+
+
+        $(add_button).click(function(e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+
+                //text box increment
+                $(wrapper).append('<div>'<input type="text" productname="mytext[]"/></div>'
+                                   '<div>'<input type="text" sku="mytext[]"/></div>'  
+                                   '<div>'<input type="number" quantity="mytext[]"/></div>'  
+                                   '<div>'<input type="number" price="mytext[]"/></div>'
+                                   '<div>'<input type="number" amount="mytext[]"/></div>'); //add input box
+                x++;
+            }
+        });
+        
+    });
+
+        
+</script>
+
+<body>
+    <div class="input_fields_wrap">
+    <tr><td><div class="bs-example">
                     <div class="container">
                     <div class="row">
-                       <div class="col-md-6 bg-light text-right">
-                       <button type="button" class="btn btn-primary ml-2">Add</button>
-                    </div>
-                    </div> 
+                       <div class="col-md-6 bg-light text-right"> 
+                       
+                   </div>
+                   </div> 
+  
+        
+        <button class="add_field_button" class="btn btn-primary ml-2" >Add </button>
+        <tr><td>
+                <div><input type="text" productname="mytext[]"></div>
+                <div><input type="text" sku="mytext[]"></div>
+               <div><input type="number" quantity="mytext[]"></div>
+               <div><input type="number" price="mytext[]"></div>
+               <div><input type="number" amount="mytext[]">
+               </tr></td>
+
+
+
+    </div>
     </div>
 </div></td></tr>
                 </tr>
@@ -340,16 +391,72 @@
                     <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                 </tr>
                
-                    <tr><td><div class="bs-example">
-                    <div class="container">
-                    <div class="row">
-                       <div class="col-md-6 bg-light text-right">
-                       <button type="button" class="btn btn-primary ml-2">Add</button>
-                    </div>
-                    </div> 
+                    
     </div>
 </div></td></tr>
                 </tr>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+        var max_fields = 30; //maximum input boxes allowed
+        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+
+
+        $(add_button).click(function(e) { //on add input button click
+            e.preventDefault();
+            if (x < max_fields) { //max input box allowed
+
+                //text box increment
+                $(wrapper).append('<div>'<input type="text" productname="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'
+                                   '<div>'<input type="text" sku="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'  
+                                   '<div>'<input type="number" quantity="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'  
+                                   '<div>'<input type="number" price="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'
+                                   '<div>'<input type="number" amount="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                x++;
+            }
+        });
+        $(wrapper).on("click", ".remove_field", function(e) { //user click on remove text
+
+            e.preventDefault();
+            $(this).parent('div').remove();
+            x--;
+        })
+    });
+
+        
+</script>
+
+<body>
+    <div class="input_fields_wrap">
+    <tr><td><div class="bs-example">
+                    <div class="container">
+                    <div class="row">
+                       <div class="col-md-6 bg-light text-right"> 
+                       
+                   </div>
+                   </div> 
+  
+        
+        <button class="add_field_button" class="btn btn-primary ml-2" >Add </button>
+        <tr><td>
+                <div><input type="text" productname="mytext[]"></div>
+                <div><input type="text" sku="mytext[]"></div>
+               <div><input type="number" quantity="mytext[]"></div>
+               <div><input type="number" price="mytext[]"></div>
+               <div><input type="number" amount="mytext[]">
+               </tr></td>
+
+
+
+    </div>
+    </div>
+</div></td></tr>
+                </tr>            
    </tbody>
     </table>
     {% endblock%}
