@@ -32661,19 +32661,18 @@ def addcomponents(request):
         
         return redirect('addmaterial')
     ls=[]
-    var1=inventory.objects.all() 
-    var2=noninventory.objects.all()
-    
-   
+    var1=noninventory.objects.all() 
+    var2=inventory.objects.all()
     for i in var1:
         ls.append(i.name)
         # print("i.name")
     for j in var2:
         ls.append(j.name)
+    print(ls)
         
     
     
-    print(ls)
+    
     # toda = date.today()
     # s1 = toda.strftime("%Y-%m-%d")
     # ks=[]
@@ -32686,7 +32685,7 @@ def addcomponents(request):
         
         'obj':ls,
         
-       }
+    }
        
     sk=[]
     
