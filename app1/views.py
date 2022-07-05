@@ -32650,29 +32650,26 @@ def addcomponents(request):
     if request.method == 'POST':
         productname=request.POST['productname']
         sku=request.POST['sku']
-        quantity=request.POST['quantity']
-        price = request.POST['price']
-        x=int(quantity)*int(price)
-        amount=x
-        print(x)
-        amount=request.POST['amount']
+        quantity = float(request.POST['quantity'])
+        price= float(request.POST['price'])
+        amount = float(quantity * price)
+        
         cdata = manufacture(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
         cdata.save()
         
         return redirect('addmaterial')
     ls=[]
-    var1=noninventory.objects.all() 
+    var1=noninventory.objects.all()
     var2=inventory.objects.all()
+    # var2=inventory.objects.all()
+    
     for i in var1:
         ls.append(i.name)
-        # print("i.name")
-    for j in var2:
-        ls.append(j.name)
+    for  j in var2:
+        ls.append(j.name)       
+    
+    
     print(ls)
-        
-    
-    
-    
     # toda = date.today()
     # s1 = toda.strftime("%Y-%m-%d")
     # ks=[]
@@ -32685,7 +32682,7 @@ def addcomponents(request):
         
         'obj':ls,
         
-    }
+       }
        
     sk=[]
     
@@ -32711,14 +32708,22 @@ def addcomponents(request):
                 
             # print(pro_name)
             print(sk)
-    
+    try:
+            var3=production.objects.get(name=productname)
+            # print('invetery'+str(var1.sku))
+            print(var3.sku)
+            sk=(var3.sku)
+    except:
+            print('not in production ')
+                # messages.info(
+                #     request, 'Data Not Valid')
+                
+            # print(pro_name)
+            print(sk) 
     
             
         
     return render(request,'app1/addmaterial.html',context)
-
-
-
 
 def materialview(request):
    mdata = production.objects.all()

@@ -74,11 +74,16 @@
               
        <div class="container bg-light mt-5">
         <h2 class="text-center alert alert-secondary">Manufacture</h2>
-         <div class="row">   
+         <div class="row">  
+         
         
     
             <div class="col-sm-6">
             <h4 class="text-center alert alert-dark">Components</h4>
+             <form method="post" action="{% url 'addcomponents' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+
+                            
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -89,11 +94,9 @@
                         <th scope="col">Amount</th>
                     </tr>
                 </thead>
-                <tbody id="tbody">
+               <tbody id="tbody"> 
 
-                   
-                    
-                    
+   
     
 <!DOCTYPE html>
 <title>Test task 1</title>
@@ -108,20 +111,14 @@
   <table id="my-table">
     <tr id="default-row">
        <td><select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for inv in inventory %}
-                        {% if id == inventoryid %}
-                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for inv in noninventory %}
-                        {% if id == noninventoryid %}
-                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>     
-                        </td>
+                         <option value=" " selected>Select Product</option> 
+                                    {% for i in obj %}
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                       
+            </select>     
+                          
+       </td>
       <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
                     ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
       <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
@@ -156,6 +153,8 @@
   <div id="addRow" class="add">
     <div id="addRowChild"><b>+</b></div>
   </div>
+  
+
 <script>
   $('#addColumnChild').click(function(){
 	$('#my-table tr').each(function(){
@@ -168,6 +167,8 @@ $('#addRowChild').click(function(){
 	$('#my-table tbody').append(`<tr>${$('#default-row').html()}</tr>`);
 });
 </script>
+
+
 
 
 
