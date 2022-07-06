@@ -205,19 +205,13 @@ $('#addRowChild').click(function(){
   <table id="my-mtable">
     <tr id="default-row">
       <td><select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for inv in inventory %}
-                        {% if id == inventoryid %}
-                        <option text="{{ inv.inventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for inv in noninventory %}
-                        {% if id == noninventoryid %}
-                        <option text="{{ inv.noninventoryid }}" value="{{ inv.name }}">{{ inv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>     
+                         <option value=" " selected>Select Product</option> 
+                                    {% for i in obj %}
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                       
+            </select>     
+                          
                         </td>
       <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
                     ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
@@ -246,9 +240,9 @@ $('#addRowChild').click(function(){
       <td></td>
     </tr>
   </table>
-  <div id="addColumn" class="add">
+  {% comment %} <div id="addColumn" class="add">
     <div id="addColumnChild1"><b></b></div>
-  </div>
+  </div> {% endcomment %}
   <div id="addRow" class="add">
     <div id="addRowChild1"><b>+</b></div>
   </div>

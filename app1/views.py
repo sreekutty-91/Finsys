@@ -32642,9 +32642,43 @@ def materialcreate(request):
         rdata = production(productname=productname,sku=sku,hsn=hsn,quantity=quantity,manufacturing_date=manufacturing_date,expiry_date=expiry_date)
         rdata.save()
         
-        return redirect('materialview')
         
-    return render(request,'app1/addmaterial.html')
+    ls=[]
+    var1=noninventory.objects.all()
+    var2=inventory.objects.all()
+       # var2=inventory.objects.all()
+    
+    for i in var1:
+           ls.append(i.name)
+    for  j in var2:
+            ls.append(j.name)       
+    
+    
+    print(ls)
+    # toda = date.today()
+    # s1 = toda.strftime("%Y-%m-%d")
+    # ks=[]
+    # var3=employee.objects.all()
+    # for k in var3:
+    #     ks.append(k.department)
+    #     print(ks)
+    
+        
+    context={
+        
+        'obj':ls,
+        
+        
+       }
+    
+       
+    return render(request,'app1/addmaterial.html',context)
+
+    return redirect('materialview')
+        
+    
+        
+    
 
 def addcomponents(request):
     if request.method == 'POST':
@@ -32708,22 +32742,11 @@ def addcomponents(request):
                 
             # print(pro_name)
             print(sk)
-    try:
-            var3=production.objects.get(name=productname)
-            # print('invetery'+str(var1.sku))
-            print(var3.sku)
-            sk=(var3.sku)
-    except:
-            print('not in production ')
-                # messages.info(
-                #     request, 'Data Not Valid')
-                
-            # print(pro_name)
-            print(sk) 
     
             
         
     return render(request,'app1/addmaterial.html',context)
+
 
 def materialview(request):
    mdata = production.objects.all()
