@@ -1105,3 +1105,4 @@ class  manufacture(models.Model):
     quantity = models.CharField(max_length=255, default='', blank=True)
     price= models.CharField(max_length=255, default='', blank=True)
     amount=models.CharField(max_length=255, default='', blank=True)
+   

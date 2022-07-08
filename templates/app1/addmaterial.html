@@ -76,7 +76,56 @@
         <h2 class="text-center alert alert-secondary">Manufacture</h2>
          <div class="row">  
          
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    var i = 1;
+    $("#add_row").click(function() {
+      b = i - 1;
+      $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
+      $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+      i++;
+    });
+    $("#delete_row").click(function() {
+      if (i > 1) {
+        $("#addr" + (i - 1)).html('');
+        i--;
+      }
+      calc();
+    });
+    $('#tab_logic tbody').on('keyup change', function() {
+      calc();
+    });
+
+    
+  });
+
+  function calc() {
+    $('#tab_logic tbody tr').each(function() {
+      var html = $(this).html();
+      if (html != '') {
+        var quantity = $(this).find('.quantity').val();
+        var price = $(this).find('.price').val();
         
+        $(this).find('.amount').val(parseFloat(quantity * price));
+        
+        calc_amount();
+      }
+    });
+  }
+
+  function calc_total() {
+    amount = 0;
+    $('.amount').each(function() {
+      amount += parseFloat($(this).val());
+    });
+   
+    $('#totalquantity').val(parseFloat(quantity.toFixed(2)));
+    $('#totalamount').val(parseFloat(amount.toFixed(2)));
+    
+  }
+</script>
     
             <div class="col-sm-6">
             <h4 class="text-center alert alert-dark">Components</h4>
@@ -297,8 +346,8 @@ $('#addRowChild').click(function(){
                                                    style="width: 100%;" >
                                         </div>
                                         <div class="col-sm-4">
-                                            <label for="amount">Amount</label>
-                                            <input type="number" name="amount" class="form-control" id="amount"
+                                            <label for="amt">Amount</label>
+                                            <input type="number" name="amt" class="form-control" id="amt"
                                                    style="width: 100%;" >
                                         </div>
                                         <div class="col-sm-4">
