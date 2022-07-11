@@ -32677,159 +32677,99 @@ def materialcreate(request):
     return redirect('materialview')
         
 def addcomponents(request):
-    if request.method == 'POST':
-        productname=request.POST['productname']
-        sku=request.POST['sku']
-        quantity = float(request.POST['quantity'])
-        price= float(request.POST['price'])
-        amount = float(quantity * price)
-        
-        cdata = manufacture(productname=productname,sku=sku,quantity=quantity,price=price,amount=amount)
-        cdata.save()
-        
-        return redirect('addmaterial')
-    ls=[]
-    var1=noninventory.objects.all()
-    var2=inventory.objects.all()
-    # var2=inventory.objects.all()
-    
-    for i in var1:
-        ls.append(i.name)
-    for  j in var2:
-        ls.append(j.name)       
-    
-    
-    print(ls)
-    
-context={
-        
-        'obj':ls,
-        
-       }
-       
-    sk=[]
-    
-    try:
-            var1=noninventory.objects.get(name=pname)
-            # print('noninventery'+str(var1.sku))
-            print(var1.sku)
-            sk=(var1.sku)
-            
-            
-    except:
-            print('not in non invo')
-            # pass
-    try:
-            var2=inventory.objects.get(name=pname)
-            # print('invetery'+str(var1.sku))
-            print(var2.sku)
-            sk=(var2.sku)
-    except:
-            print('not in invontry ')
-                # messages.info(
-                #     request, 'Data Not Valid')
-                
-            # print(pro_name)
-            print(sk)
-    
-            
-        
-    return render(request,'app1/addmaterial.html',context)
-def manufacturecreate(request):
     try:
         man1 = manufacture.objects.get(pnid=id)
         manf = manufacture(
-                       product=request.POST['product'], sku=request.POST['sku'],
+                       prod=request.POST['prod'], sku=request.POST['sku'],
                      
-                       quantity=request.POST['quantity'], price=request.POST['price'], amount=float(
-                           request.POST['amount']),
+                       qty=request.POST['qty'], price=request.POST['price'],total=float(
+                           request.POST['total']),
                       
-                       product2=request.POST['product2'],sku2=request.POST['sku2'],
+                       prod2=request.POST['prod2'],sku2=request.POST['sku2'],
                       
-                       quantity2=request.POST['quantity2'], price2=request.POST['price2'], amount2=float(
-                           request.POST['amount2']),
+                       qty2=request.POST['qty2'], price2=request.POST['price2'],total2=float(
+                           request.POST['total2']),
                        
-                       product3=request.POST['product3'], sku3=request.POST['sku3'],
+                       prod3=request.POST['prod3'], sku3=request.POST['sku3'],
                       
-                       quantity3=request.POST['quantity3'], price3=request.POST['price3'], amount3=float(
-                           request.POST['amount3']),
+                       qty3=request.POST['qty3'], price3=request.POST['price3'], total3=float(
+                           request.POST['total3']),
 
                          
-                         product4=request.POST['product3'], sku4=request.POST['sku4'],
+                         product4=request.POST['prod4'], sku4=request.POST['sku4'],
                       
-                       quantity4=request.POST['quantity4'], price4=request.POST['price4'], amount4=float(
-                           request.POST['amount4']),
-                        product5=request.POST['product5'], sku5=request.POST['sku5'],
+                         qty4=request.POST['qty4'], price4=request.POST['price4']total4=float(
+                           request.POST['total4']),
+                        prod5=request.POST['prod5'], sku5=request.POST['sku5'],
                      
-                       quantity5=request.POST['quantity5'], price5=request.POST['price5'], amount5=float(
-                           request.POST['amount5']),
+                       qty5=request.POST['qty5'], price5=request.POST['price5'], total5=float(
+                           request.POST['total5']),
                         
-                        product6=request.POST['product6'], sku6=request.POST['sku6'],
+                        prod6=request.POST['prod6'], sku6=request.POST['sku6'],
                      
-                       quantity6=request.POST['quantity6'], price6=request.POST['price6'], amount6=float(
-                           request.POST['amount6']),
+                       qty6=request.POST['qty6'], price6=request.POST['price6'], total6=float(
+                           request.POST['total6']),
                        
-                       product7=request.POST['product7'], sku7=request.POST['sku7'],
+                       prod7=request.POST['prod7'], sku7=request.POST['sku7'],
                      
-                       quantity7=request.POST['quantity7'], price7=request.POST['price7'], amount7=float(
+                       qty7=request.POST['qty7'], price7=request.POST['price7'],total7=float(
                            request.POST['amount7']),
                        
-                       product8=request.POST['product8'], sku8=request.POST['sku8'],
+                       prod8=request.POST['product8'], sku8=request.POST['sku8'],
                      
-                       quantity8=request.POST['quantity8'], price8=request.POST['price8'], amount8=float(
-                           request.POST['amount8']),
+                      qty8=request.POST['qty8'], price8=request.POST['price8'],total8=float(
+                           request.POST['total8']),
                         
-                        product9=request.POST['product9'], sku9=request.POST['sku9'],
+                        prod9=request.POST['prod9'], sku9=request.POST['sku9'],
                      
-                       quantity9=request.POST['quantity9'], price9=request.POST['price9'], amount9=float(
-                           request.POST['amount9']),
+                       qty9=request.POST['qty9'], price9=request.POST['price9'],total9=float(
+                           request.POST['total9']),
                         
-                        product10=request.POST['product10'], sku10=request.POST['sku10'],
+                        prod10=request.POST['prod10'], sku10=request.POST['sku10'],
                      
-                       quantity10=request.POST['quantity10'], price10=request.POST['price10'], amount10=float(
-                           request.POST['amount10']),
-                        product11=request.POST['product11'], sku11=request.POST['sku11'],
+                       qty10=request.POST['qty10'], price10=request.POST['price10'], total10=float(
+                           request.POST['total10']),
+                        prod11=request.POST['prod11'], sku11=request.POST['sku11'],
                      
-                       quantity11=request.POST['quantity11'], price11=request.POST['price11'], amount11=float(
-                           request.POST['amount11']),
+                       qty11=request.POST['qty11'], price11=request.POST['price11'], total11=float(
+                           request.POST['total11']),
                         
-                        product12=request.POST['product12'], sku12=request.POST['sku12'],
+                        prod12=request.POST['product12'], sku12=request.POST['sku12'],
                      
-                       quantity12=request.POST['quantity12'], price12=request.POST['price12'], amount12=float(
-                           request.POST['amount12']),
+                       qty12=request.POST['qty12'], price12=request.POST['price12'], total12=float(
+                           request.POST['total12']),
                        
-                       product13=request.POST['product13'], sku13=request.POST['sku13'],
+                       prod13=request.POST['prod13'], sku13=request.POST['sku13'],
                      
-                       quantity13=request.POST['quantity13'], price13=request.POST['price13'], amount13=float(
-                           request.POST['amount13']),
+                       qty13=request.POST['qty13'], price13=request.POST['price13'], total13=float(
+                           request.POST['total13']),
                         
-                        product14=request.POST['product14'], sku14=request.POST['sku14'],
+                        prod14=request.POST['prod14'], sku14=request.POST['sku14'],
                      
-                       quantity14=request.POST['quantity14'], price14=request.POST['price14'], amount14=float(
-                           request.POST['amount14']),
+                       qty14=request.POST['qty14'], price14=request.POST['price14'],total14=float(
+                           request.POST['total14']),
                         
-                        product15=request.POST['product15'], sku15=request.POST['sku15'],
+                        prod15=request.POST['prod15'], sku15=request.POST['sku15'],
                      
-                       quantity15=request.POST['quantity15'], price15=request.POST['price15'], amount15=float(
-                           request.POST['amount15']),                                    
-                       totalquantity=float(request.POST['totalqty']),
+                       qty15=request.POST['qty15'], price15=request.POST['price15'], total15=float(
+                           request.POST['total15']),                                    
+                       totalquantity=float(request.POST['totalquantity']),
                        totalamount=float(request.POST['totalamount']),costofcomponents=float(request.POST['cost_of_components']),
                        typeofaddlcost=request.POST['type_of_addnlcost'],
                        percentage=float(request.POST['percentage']),
                        amt=float(request.POST['amt']),totaladdlcost=float(request.POST['total_addnlcost']),
-                       effectivecost=float(request.POST['effectivecost']), effectiverateofprimaryitem=float(request.POST['effective_rateofprimaryitem']), pid=man1)
+                       effectivecost=float(request.POST['effectivecost']), effectiverateofprimaryitem=float(request.POST['effectiverate']), pid=man1)
         manf.save()
         
         
        
         
-        product = [ request.POST['product'],request.POST['product2'], request.POST['product3'],
-                   request.POST['product4'],[request.POST['product5'],request.POST['product6'],request.POST['product7'],request.POST['product8'],request.POST['product9'],
-                   request.POST['product10'],request.POST['product11'],request.POST['product12'],request.POST['product13'],request.POST['product14'],request.POST['product15']]
+        product = [request.POST['product'], request.POST['product2'],
+                        request.POST['product3'], request.POST['product4'],request.POST['product5'],request.POST['product6'],request.POST['product7'],request.POST['product8'],request.POST['product9'],request.POST['product10'],request.POST['product11'],request.POST['product12'],request.POST['product13'],request.POST['product14'],request.POST['product15']]
         qty = [request.POST['quantity'], request.POST['quantity2'],
                request.POST['quantity3'], request.POST['quantity4'],request.POST['quantity5'],request.POST['quantity6'],request.POST['quantity7'],request.POST['quantity8'],request.POST['quantity9'],request.POST['quantity10'],request.POST['quantity11'],request.POST['quantity12'],request.POST['quantity13'],request.POST['quantity14'],request.POST['quantity15']]
         totals = [float(request.POST['amount']), float(request.POST['amount2']), float(request.POST['amount3']),
-                  ,float(request.POST['amount4']),float(request.POST['amount5']),float(request.POST['amount6']),float(request.POST['amount7']),float(request.POST['amount8']),float(request.POST['amount9']),float(request.POST['amount10']),float(request.POST['amount11']),float(request.POST['amount12']),float(request.POST['amount13']),float(request.POST['amount14']),float(request.POST['amount15'])]
+                  float(request.POST['amount4']),float(request.POST['amount5']),float(request.POST['amount6']),float(request.POST['amount7']),float(request.POST['amount8']),float(request.POST['amount9']),float(request.POST['amount10']),float(request.POST['amount11']),float(request.POST['amount12']),float(request.POST['amount13']),float(request.POST['amount14']),float(request.POST['amount15'])]
         for (p, q, tl) in zip(product, qty, totals):
             try:
                 if inventory.objects.get(name=p, pid=man1):
@@ -32856,11 +32796,51 @@ def manufacturecreate(request):
                     
             
                     
-            except:
-                pass
+            # except:
+            #     pass
         return redirect('addmaterial')
     except:
         return redirect('addmaterial')
+def getcomponents(request):
+    man1 = manufacture.objects.get(id=id)
+    id = request.GET.get('id')
+
+   
+    if inventory.objects.filter(name=id, pnid=man1).exists():
+        inventoryobject = inventory.objects.filter(name=id, pnid=man1).get()
+        inventorydict = {'item': 'inventory', 'inventoryid': inventoryobject.inventoryid,
+                         'name': inventoryobject.name, 'sku': inventoryobject.sku,
+                         'unit': inventoryobject.unit, 'initialqty': inventoryobject.qty,'category': inventoryobject.category,
+                          'price': inventoryobject.salesprice,
+                        
+                         'amount': inventoryobject.cost}
+        
+
+        list.append(inventorydict)
+    elif noninventory.objects.filter(name=id, cid=cmp1).exists():
+        noninventoryobject = noninventory.objects.filter(
+            name=id, pnid=man1).get()
+        noninventorydict = {'item': 'noninventory', 'noninventoryid': noninventoryobject.noninventoryid,
+                         'name': noninventoryobject.name, 'sku': noninventoryobject.sku,
+                         'unit': noninventoryobject.unit, 'initialqty': noninventoryobject.qty,'category': noninventoryobject.category,
+                          'price': noninventoryobject.salesprice,
+                        
+                         'amount': noninventoryobject.cost}
+                            
+           
+        list.append(noninventorydict)
+    else:
+        notany = {'item': 'notany', 'name': ' ',
+                  'sku': ' ', 
+                  'unit': 0,
+                  'category': ' ', 'initialqty': 0,
+                   'cost': 0,
+                  'salesprice': 0,
+                  }
+        list.append(notany)
+    return JsonResponse(json.dumps(list), content_type="application/json", safe=False)
+
+
 
 
 
