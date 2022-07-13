@@ -1113,11 +1113,11 @@ class  rawmaterials(models.Model):
     total=models.CharField(max_length=255, default='', blank=True)
     
 
-    product1= models.CharField(max_length=255, default='', blank=True)
-    sku1 = models.CharField(max_length=255, default='', blank=True)
-    qty1 = models.CharField(max_length=255, default='', blank=True)
-    price1= models.CharField(max_length=255, default='', blank=True)
-    total1=models.CharField(max_length=255, default='', blank=True)
+    product1= models.CharField(max_length=255, default='')
+    sku1 = models.CharField(max_length=255, default='')
+    qty1 = models.CharField(max_length=255, default='')
+    price1= models.CharField(max_length=255, default='')
+    total1=models.CharField(max_length=255, default='')
        
     product2= models.CharField(max_length=255, default='', blank=True)
     sku2 = models.CharField(max_length=255, default='', blank=True)

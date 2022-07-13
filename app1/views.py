@@ -32646,7 +32646,11 @@ def materialcreate(request):
     ls=[]
     var1=noninventory.objects.all()
     var2=inventory.objects.all()
-       # var2=inventory.objects.all()
+       
+
+
+
+       
     
     for i in var1:
            ls.append(i.name)
@@ -32655,13 +32659,7 @@ def materialcreate(request):
     
     
     print(ls)
-    # toda = date.today()
-    # s1 = toda.strftime("%Y-%m-%d")
-    # ks=[]
-    # var3=employee.objects.all()
-    # for k in var3:
-    #     ks.append(k.department)
-    #     print(ks)
+    
     
         
     context={
@@ -32756,7 +32754,7 @@ def addcomponents(request):
     except:
         return redirect('addmaterial')
 def getcomponents(request):
-    man1 = manufacture.objects.get(id=id)
+    man1 = rawmaterials.objects.get(id=id)
     id = request.GET.get('id')
 
    
