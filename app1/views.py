@@ -32753,6 +32753,64 @@ def addcomponents(request):
         return redirect('addmaterial')
     except:
         return redirect('addmaterial')
+
+def getcomponents1(request):
+    man1 = rawmaterials.objects.get(id=id)
+    id = request.GET.get('id')
+    x = id.split()
+    a = x[0]
+    b = x[1]
+    list = []
+    if len(x) == 3:
+        b = x[1] + " " + x[2]
+        
+        inventoryobject = inventory.objects.filter( cid= man1)
+        for i in inventoryobject:
+            if i.name != '0.0':
+                dict = { 'inventoryid': i.inventoryid,
+                        
+                        'product': i.product, 'sku': i.sku,
+                         'qty': i.qty,
+                        'price': i.price, 'total': i.total,
+                        'subtotal': i.subtotal, 'totalquantity': i.totalquantity,
+                        
+                        'product2': i.product2, 'sku2': i.sku2,
+                        'qty2': i.qty2,
+                        'price2': i.price2, 'total2': i.total2,
+                        'product3': i.product3, 'sku3': i.sku3,
+                         'qty3': i.qty3,
+                        'price3': i.price3, 'total3': i.total3,
+                        'product4': i.product4, 'sku4': i.sku4,
+                        'qty4': i.qty4,
+                        'price4': i.price4, 'total4': i.total4, 'costofcomponents': i.costofcomponents,'typeofaddnlcost':i.typeofaddnlcost, 'percentage':i.percentage,'amount':i.amount,
+    'totaladdnlcost': i.totaladdnlcost,'effectivecost': i. effectivecost,'effectiverate': i.effectiverate}
+                list.append(dict)
+    else:
+        
+        noninventoryobject = noninventory.objects.filter( cid=man1)
+        for i in noninventoryobject:
+            if i.name != '0.0':
+                dict = {'noninventoryid': i.noninventoryid,
+                        
+                        'product': i.product, 'sku': i.sku,
+                         'qty': i.qty,
+                        'price': i.price, 'total': i.total,
+                        'subtotal': i.subtotal, 'totalquantity': i.totalquantity,
+                        
+                        'product2': i.product2, 'sku2': i.sku2,
+                        'qty2': i.qty2,
+                        'price2': i.price2, 'total2': i.total2,
+                        'product3': i.product3, 'sku3': i.sku3,
+                         'qty3': i.qty3,
+                        'price3': i.price3, 'total3': i.total3,
+                        'product4': i.product4, 'sku4': i.sku4,
+                        'qty4': i.qty4,
+                        'price4': i.price4, 'total4': i.total4,'costofcomponents': i.costofcomponents,'typeofaddnlcost':i.typeofaddnlcost, 'percentage':i.percentage,'amount':i.amount,
+    'totaladdnlcost': i.totaladdnlcost,'effectivecost': i. effectivecost,'effectiverate': i.effectiverate
+  }
+                list.append(dict)
+    return JsonResponse(json.dumps(list), content_type="application/json", safe=False)
+
 def getcomponents(request):
     man1 = rawmaterials.objects.get(id=id)
     id = request.GET.get('id')
@@ -32762,10 +32820,10 @@ def getcomponents(request):
         inventoryobject = inventory.objects.filter(name=id, pnid=man1).get()
         inventorydict = {'item': 'inventory', 'inventoryid': inventoryobject.inventoryid,
                          'name': inventoryobject.name, 'sku': inventoryobject.sku,
-                         'unit': inventoryobject.unit, 'initialqty': inventoryobject.qty,'category': inventoryobject.category,
+                        'initialqty': inventoryobject.qty,
                           'price': inventoryobject.salesprice,
                         
-                         'amount': inventoryobject.cost}
+                         'total': inventoryobject.cost}
         
 
         list.append(inventorydict)
@@ -32774,19 +32832,18 @@ def getcomponents(request):
             name=id, pnid=man1).get()
         noninventorydict = {'item': 'noninventory', 'noninventoryid': noninventoryobject.noninventoryid,
                          'name': noninventoryobject.name, 'sku': noninventoryobject.sku,
-                         'unit': noninventoryobject.unit, 'initialqty': noninventoryobject.qty,'category': noninventoryobject.category,
+                         'initialqty': noninventoryobject.qty,
                           'price': noninventoryobject.salesprice,
                         
-                         'amount': noninventoryobject.cost}
+                         'total': noninventoryobject.cost}
                             
            
         list.append(noninventorydict)
     else:
         notany = {'item': 'notany', 'name': ' ',
                   'sku': ' ', 
-                  'unit': 0,
-                  'category': ' ', 'initialqty': 0,
-                   'cost': 0,
+                   'initialqty': 0,
+                   'total': 0,
                   'salesprice': 0,
                   }
         list.append(notany)

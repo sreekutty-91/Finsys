@@ -480,9 +480,9 @@ $('#addRowChild1').click(function(){
       if (html != '') {
         var qty = $(this).find('.qty').val();
         var price = $(this).find('.price').val();
-        var tax = $(this).find('.tax').val();
+        
         $(this).find('.total').val(parseFloat(qty * price));
-        $(this).find('.taxamount').val(parseFloat((qty * price) * (parseFloat(tax) / 100)));
+       
         calc_total();
       }
     });
@@ -937,7 +937,7 @@ $('#addRowChild1').click(function(){
       </div>
     </div>
   </div>
-</form>
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
   
@@ -949,16 +949,11 @@ $('#addRowChild1').click(function(){
       select = $('#select').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getdata' %}",
+        url: "{% url 'getcomponents' %}",
         data: {
           id: select
         }
-      }).done(function(response) {
-        var json_data = JSON.parse(response);
-        for (key in json_data) {
-          document.getElementById('email').value = json_data[key]['email']
-          document.getElementById('bname').value = json_data[key]['firstname'] + ' ' + json_data[key]['lastname'] + '\n' + json_data[key]['company'] + '\n' + json_data[key]['street'] + '\n' + json_data[key]['city'] + '\n' + json_data[key]['state'] + '\n' + json_data[key]['pincode'] + '\n' + json_data[key]['country'];
-        }
+     
       })
     });
     $('#product').on('change', function() {
@@ -1442,11 +1437,11 @@ pe            } else if (inventory = '{{ man1.type }}') {
             
           }
         }
-      });
-    });
-
+      
     
-    ).trigger('change');
-  });
+    
+}).trigger('change');
+
+});
 </script> 
 
