@@ -356,6 +356,7 @@ urlpatterns = [
     re_path(r'^materialview$',views.materialview,name='materialview'),
     re_path(r'^search/$',views.searchBar,name='search'),
     re_path(r'^addcomponents$', views.addcomponents, name='addcomponents'),
+    re_path(r'^getcomponents1$', views.getcomponents1, name='getcomponents1'),
 
 
     

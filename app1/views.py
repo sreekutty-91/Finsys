@@ -32644,36 +32644,34 @@ def materialcreate(request):
         
         
     ls=[]
-    var1=noninventory.objects.all()
-    var2=inventory.objects.all()
-       
-
-
-
-       
+     
+    var1=inventory.objects.all()
+    var2=noninventory.objects.all()
+    
     
     for i in var1:
-           ls.append(i.name)
+        ls.append(i.name)
     for  j in var2:
-            ls.append(j.name)       
+        ls.append(j.name)       
     
     
     print(ls)
-    
     
         
     context={
         
         'obj':ls,
         
-        
-       }
-    
+        }
        
+    
+            
+        
     return render(request,'app1/addmaterial.html',context)
 
+          
     return redirect('materialview')
-        
+
 def addcomponents(request):
     try:
         man1 = rawmaterials.objects.get(pnid=id)
@@ -32724,8 +32722,8 @@ def addcomponents(request):
                   float(request.POST['total3']),float(request.POST['total4'])]
         for (p, q, tl) in zip(product, qty, totals):
             try:
-                if inventory.objects.get(name=p, pid=man1):
-                    invent = inventory.objects.get(name=p, pid=man1)
+                if inventory.objects.get(name=p, pnid=man1):
+                    invent = inventory.objects.get(name=p, pnid=man1)
                     invent.initialqty = int(invent.initialqty) - int(q)
                     invent.save()
                     price = float(invent.cost)
@@ -32735,8 +32733,8 @@ def addcomponents(request):
                     
                     
             try:
-                if noninventory.objects.get(name=p, pid=man1):
-                    noninvent = noninventory.objects.get(name=p, pid=man1)
+                if noninventory.objects.get(name=p, pnid=man1):
+                    noninvent = noninventory.objects.get(name=p, pnid=man1)
                     noninvent.qty = int(noninvent.qty) - int(q)
                     noninvent.save()
                     price = float(noninvent.cost)
@@ -32750,12 +32748,12 @@ def addcomponents(request):
                     
             # except:
             #     pass
-        return redirect('addmaterial')
+        
     except:
-        return redirect('addmaterial')
+        return render(request,'app1/addmaterial.html')
 
 def getcomponents1(request):
-    man1 = rawmaterials.objects.get(id=id)
+    man1 = rawmaterials.objects.get(pnid=id)
     id = request.GET.get('id')
     x = id.split()
     a = x[0]
@@ -32764,7 +32762,7 @@ def getcomponents1(request):
     if len(x) == 3:
         b = x[1] + " " + x[2]
         
-        inventoryobject = inventory.objects.filter( cid= man1)
+        inventoryobject = inventory.objects.filter( pnid= man1)
         for i in inventoryobject:
             if i.name != '0.0':
                 dict = { 'inventoryid': i.inventoryid,
@@ -32787,7 +32785,7 @@ def getcomponents1(request):
                 list.append(dict)
     else:
         
-        noninventoryobject = noninventory.objects.filter( cid=man1)
+        noninventoryobject = noninventory.objects.filter( pnid=man1)
         for i in noninventoryobject:
             if i.name != '0.0':
                 dict = {'noninventoryid': i.noninventoryid,
@@ -32812,12 +32810,12 @@ def getcomponents1(request):
     return JsonResponse(json.dumps(list), content_type="application/json", safe=False)
 
 def getcomponents(request):
-    man1 = rawmaterials.objects.get(id=id)
+    man1 = rawmaterials.objects.get(rawmaterialsid=id)
     id = request.GET.get('id')
 
    
-    if inventory.objects.filter(name=id, pnid=man1).exists():
-        inventoryobject = inventory.objects.filter(name=id, pnid=man1).get()
+    if inventory.objects.filter(name=id, cid=man1).exists():
+        inventoryobject = inventory.objects.filter(name=id,cid=man1).get()
         inventorydict = {'item': 'inventory', 'inventoryid': inventoryobject.inventoryid,
                          'name': inventoryobject.name, 'sku': inventoryobject.sku,
                         'initialqty': inventoryobject.qty,
@@ -32827,9 +32825,9 @@ def getcomponents(request):
         
 
         list.append(inventorydict)
-    elif noninventory.objects.filter(name=id, cid=man1).exists():
+    elif noninventory.objects.filter(name=id, pnid=man1).exists():
         noninventoryobject = noninventory.objects.filter(
-            name=id, pnid=man1).get()
+            name=id, cid=man1).get()
         noninventorydict = {'item': 'noninventory', 'noninventoryid': noninventoryobject.noninventoryid,
                          'name': noninventoryobject.name, 'sku': noninventoryobject.sku,
                          'initialqty': noninventoryobject.qty,

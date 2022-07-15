@@ -74,65 +74,18 @@
               
        <div class="container bg-light mt-5">
         <h2 class="text-center alert alert-secondary">Manufacture</h2>
-         <div class="row">  
+         <div class="row"> 
+      
+        <div class="col-sm-6">
+            <h4 class="text-center alert alert-dark">Components</h4> 
          
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<script>
-  $(document).ready(function() {
-    var i = 1;
-    $("#add_row").click(function() {
-      b = i - 1;
-      $('#addr' + i).html($('#addr' + b).html()).find('td:first-child').html(i + 1);
-      $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
-      i++;
-    });
-    $("#delete_row").click(function() {
-      if (i > 1) {
-        $("#addr" + (i - 1)).html('');
-        i--;
-      }
-      calc();
-    });
-    $('#tab_logic tbody').on('keyup change', function() {
-      calc();
-    });
-
-    
-  });
-
-  function calc() {
-    $('#tab_logic tbody tr').each(function() {
-      var html = $(this).html();
-      if (html != '') {
-        var quantity = $(this).find('.quantity').val();
-        var price = $(this).find('.price').val();
         
-        $(this).find('.total').val(parseFloat(quantity * price));
-        
-        calc_total();
-      }
-    });
-  }
+            
 
-  function calc_total() {
-    amount = 0;
-    $('.total').each(function() {
-      amount += parseFloat($(this).val());
-    });
-   
-    $('#totalquantity').val(parseFloat(quantity.toFixed(2)));
-    $('#totalamount').val(parseFloat(amount.toFixed(2)));
-    
-  }
-</script>
-    
-            <div class="col-sm-6">
-            <h4 class="text-center alert alert-dark">Components</h4>
              
 
                             
-            <table class="table table-hover">
+     <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ProductName</th>
@@ -144,23 +97,25 @@
                 </thead>
                <tbody id="tbody"> 
 
-   
-    
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <title>Test task 1</title>
 <body>
  
   <table id="my-table">
     <tr id="default-row">
-       <td><select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
-                         <option value=" " selected>Select Product</option> 
+      <td>
+                                
+                           <select class="form-control" name="productname">
                                     {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
                                     <option value="{{ i }}" >{{ i }}</option>
                                     {% endfor %}
-                       
-            </select>     
+                                    
+                                </select>                  
+      
                           
-       </td>
+      </td>
+       
       <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
                     ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
       <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
@@ -244,8 +199,8 @@ $('#addRowChild').click(function(){
 </tbody>
 </table>
 </div>  
-  
-     
+ 
+      
 
         <div class="col-sm-6">
             <h4 class="text-center alert alert-dark">Coproducts/Scrap</h4>
@@ -267,15 +222,16 @@ $('#addRowChild').click(function(){
 
   <table id="my-mtable">
     <tr id="default-row">
-      <td><select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
-                         <option value=" " selected>Select Product</option> 
+      <td>
+                                
+                                <select class="form-control" name="productname">
                                     {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
                                     <option value="{{ i }}" >{{ i }}</option>
                                     {% endfor %}
-                       
-            </select>     
-                          
-                        </td>
+                                    
+                                </select>          
+      </td>
       <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
                     ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
       <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
@@ -626,8 +582,7 @@ $('#addRowChild1').click(function(){
                     <td><input type="number" name='price14' id="price14" placeholder='Enter Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
                     <td><input type="number" name='total14' id="total14" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                     
-                    <td style="display: none;"><input type="number" step="any" name='taxamount14' id="taxamount14" class="form-control taxamount" readonly />
-                    </td>
+                    
                   </tr>
                   <tr id='addr0'>
                     <td>2</td>
@@ -646,7 +601,7 @@ $('#addRowChild1').click(function(){
                         {% endfor %}
                         
                       </select>
-                      {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
+                                                                     <button type="button" class="btn btn-outline-secondary ml-1">+</button>
                     </td>
                     <td><input type="text" name="SKU2" id="SKU2" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
                     
@@ -919,6 +874,8 @@ $('#addRowChild1').click(function(){
                 <tbody>
                   
 
+
+
                 </tbody>
               </table>
             </div>
@@ -939,7 +896,7 @@ $('#addRowChild1').click(function(){
   </div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script>
+
   
 
   
@@ -949,18 +906,18 @@ $('#addRowChild1').click(function(){
       select = $('#select').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents' %}",
+        url: "{% url 'getcomponents1' %}",
         data: {
           id: select
         }
      
       })
     });
-    $('#product').on('change', function() {
+    $('#product').on('change', function()) {
       select = $('#product').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents' %}",
+        url: "{% url 'getcomponents1' %}",
         data: {
           id: select
         }
@@ -1070,7 +1027,7 @@ $('#addRowChild1').click(function(){
       select = $('#product2').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents' %}",
+        url: "{% url 'getcomponents1' %}",
         data: {
           id: select
         }
@@ -1195,7 +1152,7 @@ $('#addRowChild1').click(function(){
       select = $('#product3').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents' %}",
+        url: "{% url 'getcomponents1' %}",
         data: {
           id: select
         }
@@ -1321,7 +1278,7 @@ $('#addRowChild1').click(function(){
       select = $('#product4').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents' %}",
+        url: "{% url 'getcomponents1' %}",
         data: {
           id: select
         }
