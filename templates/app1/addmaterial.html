@@ -1,8 +1,10 @@
- {% extends 'app1/base.html' %}
+{% extends 'app1/base.html' %}
+
+{% comment %} {% extends 'app1/base.html' %}
  {% block body %} 
     {% load static %}
     
-            <div class="container mt-5">
+         <div class="container mt-5">
                 <h1 class="alert alert-success text-center">
                      MATERIAL MASTER
                 </h1>
@@ -74,18 +76,13 @@
               
        <div class="container bg-light mt-5">
         <h2 class="text-center alert alert-secondary">Manufacture</h2>
-         <div class="row"> 
-      
+         <div class="row">
+         
         <div class="col-sm-6">
             <h4 class="text-center alert alert-dark">Components</h4> 
-         
-        
             
-
-             
-
-                            
-     <table class="table table-hover">
+      
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">ProductName</th>
@@ -93,29 +90,26 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Amount</th>
-                    </tr>
+                    </tr> 
                 </thead>
-               <tbody id="tbody"> 
-
- <!DOCTYPE html>
+                <tbody id="tbody">
+              <!DOCTYPE html>
 <title>Test task 1</title>
 <body>
  
-  <table id="my-table">
+
+  <table id="my-mtable">
     <tr id="default-row">
       <td>
                                 
-                           <select class="form-control" name="productname">
+                                <select class="form-control" name="productname">
                                     {% for i in obj %}
                                     <option value="none" selected disabled hidden>Select Product</option>
                                     <option value="{{ i }}" >{{ i }}</option>
                                     {% endfor %}
                                     
-                                </select>                  
-      
-                          
+                                </select>          
       </td>
-       
       <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
                     ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
       <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
@@ -124,34 +118,36 @@
       <td> <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td></td>
 
     </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
    
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-
-
+     
   </table>
-  <div id="addColumn" class="add">
-    <div id="addColumnChild"><b></b></div>
-  </div>
-  <div id="addRow" class="add">
-    <div id="addRowChild"><b>+</b></div>
-  </div>
+ <div id="addColumn" class="add"> 
+    <div id="addColumnChild1"><b></b></div>
+  </div> 
+   <div id="addRow" class="add">
+    <div id="addRowChild1"><b>+</b></div>
+  </div>      
+
+                            
+     
    <div class="container" id="two">
                                     
                                     <div class="row" style="display: inline-flex;">
@@ -178,23 +174,11 @@
                             </div>
                            
                   </div>                 
-
+   
  
   
   
 
-<script>
-  $('#addColumnChild').click(function(){
-	$('#my-table tr').each(function(){
-  	$(this).append(`<td></td>`);
-    
-  })
-});
-
-$('#addRowChild').click(function(){
-	$('#my-table tbody').append(`<tr>${$('#default-row').html()}</tr>`);
-});
-</script>
 
 </tbody>
 </table>
@@ -261,10 +245,10 @@ $('#addRowChild').click(function(){
    
      
   </table>
-  {% comment %} <div id="addColumn" class="add">
+ <div id="addColumn" class="add"> 
     <div id="addColumnChild1"><b></b></div>
-  </div> {% endcomment %}
-  <div id="addRow" class="add">
+  </div> 
+   <div id="addRow" class="add">
     <div id="addRowChild1"><b>+</b></div>
   </div>
   <div class="col-sm-4">
@@ -397,12 +381,429 @@ $('#addRowChild1').click(function(){
         </div>  
    </tbody>
     </table>
-    {% endblock%}  
+      
+ {% endblock%} 
+
+    
+            {% comment %} <div class="container mt-5">
+                <h1 class="alert alert-success text-center">
+                     MATERIAL MASTER
+                </h1>
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    
+                     <div class="col-sm-6">
+                        <form method="post" action="{% url 'materialcreate' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="container" id="two">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-6">
+                                            <label for="productname">Product Name</label>
+                                            <input type="text" name="productname" class="form-control" id="productname"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="sku">SKU</label>
+                                            <input type="number" name="sku" class="form-control" id="sku"
+                                                   style="width: 100%;" >
+                                        </div>
+                                    </div>
+                            </div>         
+                                        
+                           <div class="container" id="two">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-6">
+                                            <label for="hsn">HSN</label>
+                                            <input type="number" name="hsn" class="form-control" id="hsn"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="quantity">Quantity</label>
+                                            <input type="number" name="quantity" class="form-control" id="quantity"
+                                                   placeholder=" "
+                                                   style="width: 100%;" >
+                                        </div>
+                                    
+                                    </div>
+                            </div>
+                            <br>         
+                            <div class="container" id="two">
+                                    
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-6">
+                                            <label for="manufacturing_date">Manufacturing Date*</label>
+                                            <input type="date" name="manufacturing_date" class="form-control" id="manufacturing_date"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        
+                                        <div class="col-sm-6">
+                                            <label for="expiry_date">Expiry Date*</label>
+                                            <input type="date" name="expiry_date" class="form-control" id="expiry_date" 
+                                                   placeholder=""
+                                                   style="width: 100%;" >
+                                        </div>
+                                    </div>
+                            </div>
+                            <br>         
+                            
+                               <button type="submit" class="btn btn-success mt-3 w-100">CREATE</button>
+                        </form>
+                    </div>
+              
+     <div class="container bg-light mt-5">
+        <h2 class="text-center alert alert-secondary">Manufacture</h2> 
+         <div class="row">  
+         
+        
+    
+            <div class="col-sm-6">
+            <h4 class="text-center alert alert-dark">Components</h4>
+             
+                            
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ProductName</th>
+                        <th scope="col">SKU</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+               <tbody id="tbody"> 
+   
+    
+<!DOCTYPE html>
+<title>Test task 1</title>
+<body>
+  <!-- <div id="delColumn" class="del" onclick="appendColumn">
+      <div id="addColumnChild"><b>–</b></div>
+    </div>
+     <div id="delRow" class="del" onclick="appendRow()">
+      <div id="delRowChild"><b>–</b></div>
+    </div>-->
+  <table id="my-table">
+    <tr id="default-row">
+       <td><select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                         <option value=" " selected>Select Product</option> 
+                                    {% for i in obj %}
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                       
+            </select>     
+                          
+       </td>
+      <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU 
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+      <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></td>
+      <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+      <td> <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td></td>
+    </tr>
+   
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
 
 
-{% comment %} {% extends 'app1/base.html' %}
+  </table>
+  <div id="addColumn" class="add">
+    <div id="addColumnChild"><b></b></div>
+  </div>
+  <div id="addRow" class="add">
+    <div id="addRowChild"><b>+</b></div>
+  </div>
+   <div class="container" id="two">
+
+                                    <div class="row" style="display: inline-flex;">
+                                        <div class="col-sm-6">
+                                            <label for="total quantity">Total Quantity</label>
+                                            <input type="number" name="total quantity" class="form-control" id="total quantity"
+                                                   placeholder=" "
+                                                   style="width: 100%;">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="total amount">Total Amount</label>
+                                            <input type="number" name="total amount" class="form-control" id="total amount"
+                                                   style="width: 100%;" >
+                                        </div>
+
+                                    </div>
+                            </div>
+
+       <div class="row mt-4 mb-4"> 
+
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-outline-info w-100 text-light rounded-pill">Save
+                                </button>
+                            </div>
+
+                  </div>                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div> 
+ <div class="col-sm-6">
+            
+ <h4 class="text-center alert alert-dark">Coproducts/Scrap</h4>
+
+ <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ProductName</th>
+                        <th scope="col">SKU</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+               <tbody id="tbody"> 
+   
+    
+<!DOCTYPE html>
+<title>Test task 1</title>
+<body>
+  <!-- <div id="delColumn" class="del" onclick="appendColumn">
+      <div id="addColumnChild"><b>–</b></div>
+    </div>
+     <div id="delRow" class="del" onclick="appendRow()">
+      <div id="delRowChild"><b>–</b></div>
+    </div>-->
+  <table id="my-table">
+    <tr id="default-row">
+       <td><select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                         <option value=" " selected>Select Product</option> 
+                                    {% for i in obj %}
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                       
+            </select>     
+                          
+       </td>
+      <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
+                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+      <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></td>
+      <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+      <td> <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td></td>
+    </tr>
+   
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+
+
+  </table>
+   <div id="addColumn" class="add">
+    <div id="addColumnChild"><b></b></div>
+  </div> 
+  <div id="addRow" class="add">
+    <div id="addRowChild"><b>+</b></div>
+  </div>
+   
+
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div> 
+      
+
+
+
+  {% comment %} <div id="addColumn" class="add">
+    <div id="addColumnChild1"><b></b></div>
+  </div> {% endcomment %}
+  
+  {% comment %} <div class="col-sm-4">
+                                            <label for="cost of components">Cost of Components:</label>
+                                             <input type="number" name="cost of components" class="form-control" id="cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+ <div class="container" id="three">
+
+                                    <div class="row" style="display: inline-flex;">
+
+
+
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost">Type of Additional Cost</label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage">Percentage</label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount">Amount</label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost"></label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage"></label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount"></label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost"></label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage"></label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount"></label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost"></label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage"></label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount"></label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+
+                                    </div> 
+                                   </div>
+                                  <div class="col-sm-4">
+                                            <label for="total additional cost">Total Addl Cost:</label>
+                                             <input type="number" name="total additional cost" class="form-control" id="total additional cost"
+                                                   style="width: 100%;" > 
+
+                                  </div> 
+
+                                  <div class="col-sm-4">
+                                            <label for="effective cost">Effective Cost:</label>
+                                             <input type="number" name="effective cost" class="form-control" id="effective cost"
+                                                   style="width: 100%;" > 
+
+                                  </div>
+                                  <div class="col-sm-6">
+                                            <label for="effective rate of primary item">Effective rate of primary item:</label>
+                                             <input type="number" name="effective rate of primary item" class="form-control" id="effective rate of primary item"
+                                                   style="width: 100%;" > 
+
+                                  </div>  
+                          <div class="row mt-4 mb-4"> 
+
+                            <div class="col-sm-6">
+                                <button type="submit" class="btn btn-outline-info w-100 text-light rounded-pill">Save
+                                </button>
+                            </div>
+
+                  </div>       
+
+
+<script>
+  $('#addColumnChild1').click(function(){
+	$('#my-mtable tr').each(function(){
+  	$(this).append(`<td></td>`);
+    
+  })
+});
+$('#addRowChild1').click(function(){
+	$('#my-mtable tbody').append(`<tr>${$('#default-row').html()}</tr>`);
+});
+</script>
+                    
+        </tbody>
+        </table>
+        </div>  
+   </tbody>
+    </table>
+    {% endblock%}  {% endcomment %} 
+
+
 {% block body %}
-{% load static %} {% endcomment %}
+{% load static %}
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script>
@@ -436,9 +837,9 @@ $('#addRowChild1').click(function(){
       if (html != '') {
         var qty = $(this).find('.qty').val();
         var price = $(this).find('.price').val();
-        
+        var tax = $(this).find('.tax').val();
         $(this).find('.total').val(parseFloat(qty * price));
-       
+        $(this).find('.taxamount').val(parseFloat((qty * price) * (parseFloat(tax) / 100)));
         calc_total();
       }
     });
@@ -456,7 +857,6 @@ $('#addRowChild1').click(function(){
   }
 </script>
 
-
 <style>
   input {
     background-color: #2f516f;
@@ -465,7 +865,7 @@ $('#addRowChild1').click(function(){
     color: white;
   }
 </style>
-<form action="{% url 'addcomponents' %}" method="post" class="needs-validation" novalidate>
+<form action="addcomponents" method="post" class="needs-validation" novalidate>
   {% csrf_token %}
  
     <div class="card radius-15">
@@ -484,11 +884,11 @@ $('#addRowChild1').click(function(){
                 <thead>
                   <tr>
                     <th class="text-center">#</th>
-                    <th class="text-center">PRODUCT</th>
+                    <th class="text-center">PRODUCT </th>
                     <th class="text-center">SKU</th>
-                    <th class="text-center">QTY</th>
+                    <th class="text-center">QUANTITY</th>
                     <th class="text-center">PRICE</th>
-                    <th class="text-center">AMOUNT</th>
+                    <th class="text-center">TOTAL</th>
                     
                   </tr>
                 </thead>
@@ -496,7 +896,7 @@ $('#addRowChild1').click(function(){
                   <tr id='addr0'>
                     <td>1</td>
                     <td>
-                      <select name='product' id="product" class="form-control" style="background-color: #2f516f; color: white;">
+                      <select name="product" id="product" class="form-control" style="background-color: #2f516f; color: white;">
                         <option value=" " selected>Select Product</option>
                         {% for proinv in inv %}
                         {% if proinv.cid_id == cmp1.cid %}
@@ -504,14 +904,14 @@ $('#addRowChild1').click(function(){
                         {% endif %}
                         {% endfor %}
                         {% for proinv in noninv %}
-                        {% if proinv.cid_id == man1.cid %}
+                        {% if proinv.cid_id == cmp1.cid %}
                         <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
                         {% endif %}
                         {% endfor %}
                         
                       </select>
-                    </td>
-                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                     
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
                     <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
                       <span id="qtyspan" class='text-muted'></span>
                     </td>
@@ -525,8 +925,8 @@ $('#addRowChild1').click(function(){
                     <td>
                       <input name='product11' id="product11" class="form-control" style="background-color: #2f516f; color: white;" readonly>
                     </td>
-                    <td><input type="text" name='sku11' id="hsn11" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
-                    <td><input type="text" name='description11' id="description11" placeholder='Description' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="text" name='sku11' id="sku11" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
                     <td><input type="number" name='qty11' placeholder='Enter Qty' id="qty11" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
                       <input type="number" placeholder='Enter Qty' id="qty111" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
                       <span id="qtyspan" class='text-muted'></span>
@@ -557,7 +957,7 @@ $('#addRowChild1').click(function(){
                     <td>
                       <input name='product13' id="product13" class="form-control" style="background-color: #2f516f; color: white;" readonly>
                     </td>
-                    <td><input type="text" name='SKU13' id="hsn13" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="text" name='SKU13' id="SKU13" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
                     <td><input type="number" name='qty13' placeholder='Enter Qty' id="qty13" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
                      <input type="number" placeholder='Enter Qty' id="qty131" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
                       <span id="qtyspan" class='text-muted'></span>
@@ -573,16 +973,17 @@ $('#addRowChild1').click(function(){
                     <td>
                       <input name='product14' id="product14" class="form-control" style="background-color: #2f516f; color: white;" readonly>
                     </td>
-                    <td><input type="text" name='SKU14' id="SKU14" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="text" name='SKU14' id="sku14" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
                     
                     <td><input type="number" name='qty14' placeholder='Enter Qty' id="qty14" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
                       <input type="number" placeholder='Enter Qty' id="qty141" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
                       <span id="qtyspan" class='text-muted'></span>
                     </td>
-                    <td><input type="number" name='price14' id="price14" placeholder='Enter Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='price14' id="unit14" placeholder='Enter Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
                     <td><input type="number" name='total14' id="total14" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                     
-                    
+                   
+                    </td>
                   </tr>
                   <tr id='addr0'>
                     <td>2</td>
@@ -590,20 +991,20 @@ $('#addRowChild1').click(function(){
                       <select name="product2" id="product2" class="form-control" style="background-color: #2f516f; color: white;">
                         <option value=" " selected>Select Product</option>
                         {% for proinv in inv %}
-                        {% if proinv.cid_id == man1.cid %}
+                        {% if proinv.cid_id == cmp1.cid %}
                         <option text="{{ proinv.inventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
                         {% endif %}
                         {% endfor %}
                         {% for proinv in noninv %}
-                        {% if proinv.cid_id == man1.cid %}
+                        {% if proinv.cid_id == cmp1.cid %}
                         <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
                         {% endif %}
                         {% endfor %}
                         
                       </select>
-                                                                     <button type="button" class="btn btn-outline-secondary ml-1">+</button>
+                      {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
                     </td>
-                    <td><input type="text" name="SKU2" id="SKU2" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="text" name="SKU2" id="sku2" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
                     
                     <td><input type="number" name="qty2" value=0 onchange="qtychange2(this)" placeholder='Enter Qty' id="qty2" class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
                       <span id="qtyspan1" class='text-muted'></span>
@@ -618,7 +1019,7 @@ $('#addRowChild1').click(function(){
                     <td>
                       <input name='product21' id="product21" class="form-control" style="background-color: #2f516f; color: white;" readonly>
                     </td>
-                    <td><input type="text" name='SKU21' id="SKU21" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="text" name='SKU21' id="sku21" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
                     
                     <td><input type="number" name='qty21' placeholder='Enter Qty' id="qty21" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
                       <input type="number" placeholder='Enter Qty' id="qty211" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
@@ -656,7 +1057,7 @@ $('#addRowChild1').click(function(){
                       <input type="number" placeholder='Enter Qty' id="qty231" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
                       <span id="qtyspan" class='text-muted'></span>
                     </td>
-                    <td><input type="number" name='price23' id="price23" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='price23' id="unit23" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
                     <td><input type="number" name='total23' id="total23" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                     
                    
@@ -672,7 +1073,7 @@ $('#addRowChild1').click(function(){
                       <input type="number" placeholder='Enter Qty' id="qty241" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
                       <span id="qtyspan" class='text-muted'></span>
                     </td>
-                    <td><input type="number" name='price24' id="price24" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='price24' id="unit24" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
                     <td><input type="number" name='total24' id="total24" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                    
                     
@@ -683,12 +1084,12 @@ $('#addRowChild1').click(function(){
                       <select name="product3" id="product3" class="form-control" style="background-color: #2f516f; color: white;">
                         <option value=" " selected>Select Product</option>
                         {% for proinv in inv %}
-                        {% if proinv.cid_id == man1.cid %}
+                        {% if proinv.cid_id == cmp1.cid %}
                         <option text="{{ proinv.inventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
                         {% endif %}
                         {% endfor %}
                         {% for proinv in noninv %}
-                        {% if proinv.cid_id == man1.cid %}
+                        {% if proinv.cid_id == cmp1.cid %}
                         <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
                         {% endif %}
                         {% endfor %}
@@ -717,7 +1118,7 @@ $('#addRowChild1').click(function(){
                       <input type="number" placeholder='Enter Qty' id="qty311" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
                       <span id="qtyspan" class='text-muted'></span>
                     </td>
-                    <td><input type="number" name='price31' id="price31" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='price31' id="unit31" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
                     <td><input type="number" name='total31' id="total31" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                     
                     
@@ -775,12 +1176,12 @@ $('#addRowChild1').click(function(){
                       <select name="product4" id="product4" class="form-control" style="background-color: #2f516f; color: white;">
                         <option value=" " selected>Select Product</option>
                         {% for proinv in inv %}
-                        {% if proinv.cid_id == man1.cid %}
+                        {% if proinv.cid_id == cmp1.cid %}
                         <option text="{{ proinv.inventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
                         {% endif %}
                         {% endfor %}
                         {% for proinv in noninv %}
-                        {% if proinv.cid_id == man1.cid %}
+                        {% if proinv.cid_id == cmp1.cid %}
                         <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
                         {% endif %}
                         {% endfor %}
@@ -793,7 +1194,7 @@ $('#addRowChild1').click(function(){
                     <td><input type="number" name="qty4" value=0 placeholder='Enter Qty' onchange="qtychange4(this)" class="form-control qty" id="qty4" step=0 min=0 style="background-color: #2f516f; color: white;" />
                       <span id="qtyspan3" class='text-muted'></span>
                     </td>
-                    <td><input type="text" name="price4" id="unit4" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="text" name="price4" id="price4" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
                     <td><input type="number" name="total4" id="total4" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                     
                     
@@ -809,11 +1210,10 @@ $('#addRowChild1').click(function(){
                       <input type="number" placeholder='Enter Qty' id="qty411" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
                       <span id="qtyspan" class='text-muted'></span>
                     </td>
-                    <td><input type="number" name='price41' id="price41" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='price41' id="unit41" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
                     <td><input type="number" name='total41' id="total41" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                     
-                    <td style="display: none;"><input type="number" step="any" name='taxamount41' id="taxamount41" class="form-control taxamount" readonly />
-                    </td>
+                    
                   </tr>
                   <tr id='bun14' style="display: none;">
                     <td></td>
@@ -874,8 +1274,6 @@ $('#addRowChild1').click(function(){
                 <tbody>
                   
 
-
-
                 </tbody>
               </table>
             </div>
@@ -894,30 +1292,20 @@ $('#addRowChild1').click(function(){
       </div>
     </div>
   </div>
-
+</form>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
+<script>
   
 
   
 <script>
   $(document).ready(function() {
-    $('#select').on('change', function() {
-      select = $('#select').val();
-      $.ajax({
-        type: "GET",
-        url: "{% url 'getcomponents1' %}",
-        data: {
-          id: select
-        }
-     
-      })
-    });
-    $('#product').on('change', function()) {
+    
+    $('#product').on('change', function() {
       select = $('#product').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents1' %}",
+        url: "{% url 'getitems' %}",
         data: {
           id: select
         }
@@ -936,7 +1324,7 @@ $('#addRowChild1').click(function(){
              
               document.getElementById('qty11').value = json_data[key]['qty1'];
               document.getElementById('qty111').value = json_data[key]['qty1'];
-              document.getElementById('price11').value = json_data[key]['price1'];
+              document.getElementById('unit11').value = json_data[key]['price1'];
               document.getElementById('total11').value = json_data[key]['total1'];
               
             }
@@ -948,7 +1336,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku12').value = json_data[key]['sku2'];
               document.getElementById('qty12').value = json_data[key]['qty2'];
               document.getElementById('qty121').value = json_data[key]['qty2'];
-              document.getElementById('price12').value = json_data[key]['price2'];
+              document.getElementById('unit12').value = json_data[key]['price2'];
               document.getElementById('total12').value = json_data[key]['total2'];
               
             }
@@ -960,7 +1348,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku13').value = json_data[key]['sku3'];
               document.getElementById('qty13').value = json_data[key]['qty3'];
               document.getElementById('qty131').value = json_data[key]['qty3'];
-              document.getElementById('price13').value = json_data[key]['price3'];
+              document.getElementById('unit13').value = json_data[key]['price3'];
               document.getElementById('total13').value = json_data[key]['total3'];
               
             }
@@ -972,7 +1360,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku14').value = json_data[key]['sku4'];
               document.getElementById('qty14').value = json_data[key]['qty4'];
               document.getElementById('qty141').value = json_data[key]['qty4'];
-              document.getElementById('price14').value = json_data[key]['price4'];
+              document.getElementById('unit14').value = json_data[key]['price4'];
               document.getElementById('total14').value = json_data[key]['total4'];
               
             }
@@ -991,7 +1379,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku11').value = '';
             document.getElementById('qty11').value = 0;
             document.getElementById('qty111').value = 0;
-            document.getElementById('price11').value = 0;
+            document.getElementById('unit11').value = 0;
             document.getElementById('total11').value = 0;
             
             document.getElementById('bun2').style.display = 'none';
@@ -999,7 +1387,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku12').value = '';
             document.getElementById('qty12').value = 0;
             document.getElementById('qty121').value = 0;
-            document.getElementById('price12').value = 0;
+            document.getElementById('unit12').value = 0;
             document.getElementById('total12').value = 0;
             
 
@@ -1008,7 +1396,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku13').value = '';
             document.getElementById('qty13').value = 0;
             document.getElementById('qty131').value = 0;
-            document.getElementById('price13').value = 0;
+            document.getElementById('unit13').value = 0;
             document.getElementById('total13').value = 0;
             
             document.getElementById('bun4').style.display = 'none';
@@ -1016,7 +1404,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku14').value = '';
             document.getElementById('qty14').value = 0;
             document.getElementById('qty141').value = 0;
-            document.getElementById('price14').value = 0;
+            document.getElementById('unit14').value = 0;
             document.getElementById('total14').value = 0;
             
           }
@@ -1027,7 +1415,7 @@ $('#addRowChild1').click(function(){
       select = $('#product2').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents1' %}",
+        url: "{% url 'getitems' %}",
         data: {
           id: select
         }
@@ -1055,7 +1443,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku21').value = json_data[key]['sku1'];
               document.getElementById('qty21').value = json_data[key]['qty1'];
               document.getElementById('qty211').value = json_data[key]['qty1'];
-              document.getElementById('price21').value = json_data[key]['price1'];
+              document.getElementById('unit21').value = json_data[key]['price1'];
               document.getElementById('total21').value = json_data[key]['total1'];
               
             }
@@ -1067,7 +1455,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku22').value = json_data[key]['sku2'];
               document.getElementById('qty22').value = json_data[key]['qty2'];
               document.getElementById('qty221').value = json_data[key]['qty2'];
-              document.getElementById('price22').value = json_data[key]['price2'];
+              document.getElementById('unit22').value = json_data[key]['price2'];
               document.getElementById('total22').value = json_data[key]['total2'];
               
             }
@@ -1079,7 +1467,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku23').value = json_data[key]['sku3'];
               document.getElementById('qty23').value = json_data[key]['qty3'];
               document.getElementById('qty231').value = json_data[key]['qty3'];
-              document.getElementById('price23').value = json_data[key]['price3'];
+              document.getElementById('unit23').value = json_data[key]['price3'];
               document.getElementById('total23').value = json_data[key]['total3'];
               
             }
@@ -1091,14 +1479,14 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku24').value = json_data[key]['sku4'];
               document.getElementById('qty24').value = json_data[key]['qty4'];
               document.getElementById('qty241').value = json_data[key]['qty4'];
-              document.getElementById('price24').value = json_data[key]['price4'];
+              document.getElementById('unit24').value = json_data[key]['price4'];
               document.getElementById('total24').value = json_data[key]['total4'];
              
             }
           } else {
             document.getElementById('price2').value = json_data[key]['salesprice'];
             var inventory = document.getElementById('inventory').value;
-            if {inventory == '{{ man1.type }}'} {
+            if {inventory == '{{ man1.type }}') {
               document.getElementById('price2').style.display = 'block';
              
               document.getElementById('total2').style.display = 'block';
@@ -1152,7 +1540,7 @@ $('#addRowChild1').click(function(){
       select = $('#product3').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents1' %}",
+        url: "{% url 'getitems' %}",
         data: {
           id: select
         }
@@ -1180,7 +1568,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku31').value = json_data[key]['sku1'];
               document.getElementById('qty31').value = json_data[key]['qty1'];
               document.getElementById('qty311').value = json_data[key]['qty1'];
-              document.getElementById('price31').value = json_data[key]['price1'];
+              document.getElementById('unit31').value = json_data[key]['price1'];
               document.getElementById('total31').value = json_data[key]['total1'];
               
             }
@@ -1192,7 +1580,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku32').value = json_data[key]['sku2'];
               document.getElementById('qty32').value = json_data[key]['qty2'];
               document.getElementById('qty321').value = json_data[key]['qty2'];
-              document.getElementById('price32').value = json_data[key]['price2'];
+              document.getElementById('unit32').value = json_data[key]['price2'];
               document.getElementById('total32').value = json_data[key]['total2'];
               
             }
@@ -1216,7 +1604,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku34').value = json_data[key]['sku4'];
               document.getElementById('qty34').value = json_data[key]['qty4'];
               document.getElementById('qty341').value = json_data[key]['qty4'];
-              document.getElementById('price34').value = json_data[key]['price4'];
+              document.getElementById('unit34').value = json_data[key]['price4'];
               document.getElementById('total34').value = json_data[key]['total4'];
               
             }
@@ -1240,7 +1628,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku31').value = '';
             document.getElementById('qty31').value = 0;
             document.getElementById('qty311').value = 0;
-            document.getElementById('price31').value = 0;
+            document.getElementById('unit31').value = 0;
             document.getElementById('total31').value = 0;
             
 
@@ -1249,7 +1637,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku32').value = '';
             document.getElementById('qty32').value = 0;
             document.getElementById('qty321').value = 0;
-            document.getElementById('price32').value = 0;
+            document.getElementById('unit32').value = 0;
             document.getElementById('total32').value = 0;
            
 
@@ -1258,7 +1646,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku33').value = '';
             document.getElementById('qty33').value = 0;
             document.getElementById('qty331').value = 0;
-            document.getElementById('price33').value = 0;
+            document.getElementById('unit33').value = 0;
             document.getElementById('total33').value = 0;
             
 
@@ -1267,7 +1655,7 @@ $('#addRowChild1').click(function(){
             document.getElementById('sku34').value = '';
             document.getElementById('qty34').value = 0;
             document.getElementById('qty341').value = 0;
-            document.getElementById('price34').value = 0;
+            document.getElementById('unit34').value = 0;
             document.getElementById('total34').value = 0;
           
           }
@@ -1278,7 +1666,7 @@ $('#addRowChild1').click(function(){
       select = $('#product4').val();
       $.ajax({
         type: "GET",
-        url: "{% url 'getcomponents1' %}",
+        url: "{% url 'getitems' %}",
         data: {
           id: select
         }
@@ -1305,7 +1693,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku41').value = json_data[key]['sku1'];
               document.getElementById('qty41').value = json_data[key]['qty1'];
               document.getElementById('qty411').value = json_data[key]['qty1'];
-              document.getElementById('price41').value = json_data[key]['price1'];
+              document.getElementById('unit41').value = json_data[key]['price1'];
               document.getElementById('total41').value = json_data[key]['total1'];
               
             }
@@ -1317,7 +1705,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku42').value = json_data[key]['sku2'];
               document.getElementById('qty42').value = json_data[key]['qty2'];
               document.getElementById('qty421').value = json_data[key]['qty2'];
-              document.getElementById('price42').value = json_data[key]['price2'];
+              document.getElementById('unit42').value = json_data[key]['price2'];
               document.getElementById('total42').value = json_data[key]['total2'];
              
             }
@@ -1329,7 +1717,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku43').value = json_data[key]['sku3'];
               document.getElementById('qty43').value = json_data[key]['qty3'];
               document.getElementById('qty431').value = json_data[key]['qty3'];
-              document.getElementById('price43').value = json_data[key]['price3'];
+              document.getElementById('unit43').value = json_data[key]['price3'];
               document.getElementById('total43').value = json_data[key]['total3'];
               
             }
@@ -1341,7 +1729,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('sku44').value = json_data[key]['sku4'];
               document.getElementById('qty44').value = json_data[key]['qty4'];
               document.getElementById('qty441').value = json_data[key]['qty4'];
-              document.getElementById('price44').value = json_data[key]['price4'];
+              document.getElementById('unit44').value = json_data[key]['price4'];
               document.getElementById('total44').value = json_data[key]['total4'];
              
             }
@@ -1362,7 +1750,7 @@ pe            } else if (inventory = '{{ man1.type }}') {
             document.getElementById('sku41').value = '';
             document.getElementById('qty41').value = 0;
             document.getElementById('qty411').value = 0;
-            document.getElementById('price41').value = 0;
+            document.getElementById('unit41').value = 0;
             document.getElementById('total41').value = 0;
          
 
@@ -1371,7 +1759,7 @@ pe            } else if (inventory = '{{ man1.type }}') {
             document.getElementById('sku42').value = '';
             document.getElementById('qty42').value = 0;
             document.getElementById('qty421').value = 0;
-            document.getElementById('price42').value = 0;
+            document.getElementById('unit42').value = 0;
             document.getElementById('total42').value = 0;
            
 
@@ -1389,16 +1777,18 @@ pe            } else if (inventory = '{{ man1.type }}') {
             document.getElementById('sku44').value = '';
             document.getElementById('qty44').value = 0;
             document.getElementById('qty441').value = 0;
-            document.getElementById('price44').value = 0;
+            document.getElementById('unit44').value = 0;
             document.getElementById('total44').value = 0;
             
           }
         }
-      
-    
-    
-}).trigger('change');
+      });
+    });
 
-});
-</script> 
+    
+    ).trigger('change');
+  });
+</script>
+{% endblock %}
+
 
