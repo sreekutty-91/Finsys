@@ -32720,37 +32720,67 @@ def addcomponents(request):
                request.POST['qty2'], request.POST['qty3'],request.POST['qty4']]
         totals = [float(request.POST['total']), float(request.POST['total1']), float(request.POST['total2']),
                   float(request.POST['total3']),float(request.POST['total4'])]
-        for (p, q, tl) in zip(product, qty, totals):
-            try:
+
+
+    
+        ls=[]
+    
+        var1=inventory.objects.all()
+        var2=noninventory.objects.all()
+         
+    
+        for i in var1:
+          ls.append(i.name)
+        for  j in var2:
+          ls.append(j.name)       
+    
+    
+        print(ls)
+    # toda = date.today()
+    # s1 = toda.strftime("%Y-%m-%d")
+    # ks=[]
+    # var3=employee.objects.all()
+    # for k in var3:
+    #     ks.append(k.department)
+    #     print(ks)
+        
+        context={
+        
+            'obj':ls,
+            } 
+    
+         
+    for (p, q, tl) in zip(product, qty, totals):
+        try:
                 if inventory.objects.get(name=p, pnid=man1):
                     invent = inventory.objects.get(name=p, pnid=man1)
                     invent.initialqty = int(invent.initialqty) - int(q)
                     invent.save()
                     price = float(invent.cost)
-            except:
+        except:
                      pass   
                     
                     
                     
-            try:
-                if noninventory.objects.get(name=p, pnid=man1):
+        try:
+            if noninventory.objects.get(name=p, pnid=man1):
                     noninvent = noninventory.objects.get(name=p, pnid=man1)
                     noninvent.qty = int(noninvent.qty) - int(q)
                     noninvent.save()
                     price = float(noninvent.cost)
 
-            except:
+        except:
                      pass   
                     
 
                     
             
                     
-            # except:
-            #     pass
+    #  except:
+    #             pass
         
     except:
-        return render(request,'app1/addmaterial.html')
+        return render(request,'app1/addmaterial.html',context)
 
 def getcomponents1(request):
     man1 = rawmaterials.objects.get(pnid=id)
@@ -32760,6 +32790,7 @@ def getcomponents1(request):
     b = x[1]
     list = []
     if len(x) == 3:
+        
         b = x[1] + " " + x[2]
         
         inventoryobject = inventory.objects.filter( pnid= man1)
