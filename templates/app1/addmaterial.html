@@ -1,7 +1,5 @@
-{% extends 'app1/base.html' %}
-
-{% comment %} {% extends 'app1/base.html' %}
- {% block body %} 
+ {% extends 'app1/base.html' %}
+  {% block body %}  
     {% load static %}
     
          <div class="container mt-5">
@@ -73,7 +71,7 @@
                                <button type="submit" class="btn btn-success mt-3 w-100">CREATE</button>
                         </form>
                     </div>
-              
+{% comment %}               
        <div class="container bg-light mt-5">
         <h2 class="text-center alert alert-secondary">Manufacture</h2>
          <div class="row">
@@ -101,6 +99,7 @@
   <table id="my-mtable">
     <tr id="default-row">
       <td>
+                       
                                 
                                 <select class="form-control" name="productname">
                                     {% for i in obj %}
@@ -108,16 +107,19 @@
                                     <option value="{{ i }}" >{{ i }}</option>
                                     {% endfor %}
                                     
-                                </select>          
-      </td>
-      <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU
-                    ' class="form-control" style="background-color: #2f516f; color: white;" /></td>
-      <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
-                      <span id="qtyspan" class='text-muted'></td>
-      <td><input type="number" name='price' id="unit1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
-      <td> <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td></td>
+                                </select>       
+                     
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="price1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
 
-    </tr>
+       
     <tr>
       <td></td>
       <td></td>
@@ -380,9 +382,9 @@ $('#addRowChild1').click(function(){
         </table>
         </div>  
    </tbody>
-    </table>
-      
- {% endblock%} 
+    </table> 
+       {% endcomment %}
+ {% comment %} {% endblock%}  {% endcomment %} 
 
     
             {% comment %} <div class="container mt-5">
@@ -802,7 +804,7 @@ $('#addRowChild1').click(function(){
     {% endblock%}  {% endcomment %} 
 
 
-{% block body %}
+{% comment %} {% block body%} {% endcomment %}
 {% load static %}
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -837,13 +839,14 @@ $('#addRowChild1').click(function(){
       if (html != '') {
         var qty = $(this).find('.qty').val();
         var price = $(this).find('.price').val();
-        var tax = $(this).find('.tax').val();
+
         $(this).find('.total').val(parseFloat(qty * price));
         $(this).find('.taxamount').val(parseFloat((qty * price) * (parseFloat(tax) / 100)));
         calc_total();
       }
     });
   }
+  
 
   function calc_total() {
     total = 0;
@@ -851,7 +854,7 @@ $('#addRowChild1').click(function(){
       total += parseFloat($(this).val());
     });
     
-    $('#subtotal').val(parseFloat(total.toFixed(2)));
+    $('#totalamount').val(parseFloat(total.toFixed(2)));
     $('#totalquantity').val(parseFloat(qty.toFixed(2)));
    
   }
@@ -865,6 +868,14 @@ $('#addRowChild1').click(function(){
     color: white;
   }
 </style>
+<div class="container bg-light mt-5">
+        <h2 class="text-center alert alert-secondary">Manufacture</h2>
+         <div class="row">
+         
+        <div class="col-sm-6">
+            <h4 class="text-center alert alert-dark">Components</h4> 
+            
+      
 <form action="addcomponents" method="post" class="needs-validation" novalidate>
   {% csrf_token %}
  
@@ -896,20 +907,15 @@ $('#addRowChild1').click(function(){
                   <tr id='addr0'>
                     <td>1</td>
                     <td>
-                      <select name="product" id="product" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for proinv in inv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.inventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for proinv in noninv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>
+                       
+                                
+                                <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>       
                      
                     <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
                     <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
@@ -988,20 +994,13 @@ $('#addRowChild1').click(function(){
                   <tr id='addr0'>
                     <td>2</td>
                     <td>
-                      <select name="product2" id="product2" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for proinv in inv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.inventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for proinv in noninv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>
+                     <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>   
                       {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
                     </td>
                     <td><input type="text" name="SKU2" id="sku2" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
@@ -1081,20 +1080,13 @@ $('#addRowChild1').click(function(){
                   <tr id='addr0'>
                     <td>3</td>
                     <td>
-                      <select name="product3" id="product3" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for proinv in inv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.inventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for proinv in noninv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>
+                      <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>   
                       {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
                     </td>
                     <td><input type="text" name="sku3" id="sku3" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
@@ -1173,20 +1165,13 @@ $('#addRowChild1').click(function(){
                   <tr id='addr0'>
                     <td>4</td>
                     <td>
-                      <select name="product4" id="product4" class="form-control" style="background-color: #2f516f; color: white;">
-                        <option value=" " selected>Select Product</option>
-                        {% for proinv in inv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.inventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        {% for proinv in noninv %}
-                        {% if proinv.cid_id == cmp1.cid %}
-                        <option text="{{ proinv.noninventoryid }}" value="{{ proinv.name }}">{{ proinv.name }} </option>
-                        {% endif %}
-                        {% endfor %}
-                        
-                      </select>
+                      <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>   
                       {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
                     </td>
                     <td><input type="text" name="sku4" id="sku4" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
@@ -1272,19 +1257,1038 @@ $('#addRowChild1').click(function(){
             <div class="col-md-5 table-responsive-md mt-3">
               <table class="table table-bordered table-hover" id="tab_logic_total">
                 <tbody>
+                  <tr>
+                    <th class="text-center"> Total Quantity</th>
+                    <td class="text-center"><input type="number" step="any" name='subtotal' placeholder=0 class="form-control" id="subtotal" readonly style="background-color: #2f516f; color: white;" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="text-center">Sub Total</th>
+                    <td><input type="number" name='taxamount' step="any" id="tax_amount" placeholder=0 class="form-control" readonly />
+                    </td>
+                  </tr>
                   
 
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-10 mt-3"></div>
-            <div class="col-md-2 mt-3">
-              <button type="submit" class="btn btn-outline-info rounded-pill w-100 text-grey pull-left">
-                Save
-              </button>
+            <div class="row mt-4 mb-4"> 
+
+                            <div class="col-sm-8">
+                                <button type="submit" class="btn btn-outline-info w-75 text-light rounded-pill pull-right">Save
+                                </button>
+                            </div>
+
+                  </div>       
+          
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+  
+
+  
+<script>
+  $(document).ready(function() {
+    
+    $('#product').on('change', function() {
+      select = $('#product').val();
+      $.ajax({
+        type: "GET",
+        url: "{% url 'getitems' %}",
+        data: {
+          id: select
+        }
+      })
+          if (json_data[key]['item'] == 'bundle') {
+            document.getElementById('price1').value = 0;
+            document.getElementById('price1').style.display = 'none';
+            
+            document.getElementById('total1').style.display = 'none';
+            if (json_data[key]['qty1'] == undefined || json_data[key]['qty1'] == 0) {
+              document.getElementById('bun1').style.display = 'none';
+            } else {
+              document.getElementById('bun1').style.display = 'table-row';
+              document.getElementById('product11').value = json_data[key]['product1'];
+              document.getElementById('sku11').value = json_data[key]['sku1'];
+             
+              document.getElementById('qty11').value = json_data[key]['qty1'];
+              document.getElementById('qty111').value = json_data[key]['qty1'];
+              document.getElementById('unit11').value = json_data[key]['price1'];
+              document.getElementById('total11').value = json_data[key]['total1'];
+              
+            }
+            if (json_data[key]['qty2'] == undefined || json_data[key]['qty2'] == 0) {
+              document.getElementById('bun2').style.display = 'none';
+            } else {
+              document.getElementById('bun2').style.display = 'table-row';
+              document.getElementById('product12').value = json_data[key]['product2'];
+              document.getElementById('sku12').value = json_data[key]['sku2'];
+              document.getElementById('qty12').value = json_data[key]['qty2'];
+              document.getElementById('qty121').value = json_data[key]['qty2'];
+              document.getElementById('unit12').value = json_data[key]['price2'];
+              document.getElementById('total12').value = json_data[key]['total2'];
+              
+            }
+            if (json_data[key]['qty3'] == undefined || json_data[key]['qty3'] == 0) {
+              document.getElementById('bun3').style.display = 'none';
+            } else {
+              document.getElementById('bun3').style.display = 'table-row';
+              document.getElementById('product13').value = json_data[key]['product3'];
+              document.getElementById('sku13').value = json_data[key]['sku3'];
+              document.getElementById('qty13').value = json_data[key]['qty3'];
+              document.getElementById('qty131').value = json_data[key]['qty3'];
+              document.getElementById('unit13').value = json_data[key]['price3'];
+              document.getElementById('total13').value = json_data[key]['total3'];
+              
+            }
+            if (json_data[key]['qty4'] == undefined || json_data[key]['qty4'] == 0) {
+              document.getElementById('bun4').style.display = 'none';
+            } else {
+              document.getElementById('bun4').style.display = 'table-row';
+              document.getElementById('product14').value = json_data[key]['product4'];
+              document.getElementById('sku14').value = json_data[key]['sku4'];
+              document.getElementById('qty14').value = json_data[key]['qty4'];
+              document.getElementById('qty141').value = json_data[key]['qty4'];
+              document.getElementById('unit14').value = json_data[key]['price4'];
+              document.getElementById('total14').value = json_data[key]['total4'];
+              
+            }
+          } else {
+            document.getElementById('unit1').value = json_data[key]['salesprice'];
+            var type = document.getElementById('components').value;
+            if (type == '{{ man1.inventory }}') {
+              document.getElementById('price1').style.display = 'block';
+              
+              document.getElementById('total1').style.display = 'block';
+              
+            } 
+
+            document.getElementById('bun1').style.display = 'none';
+            document.getElementById('product11').value = '';
+            document.getElementById('sku11').value = '';
+            document.getElementById('qty11').value = 0;
+            document.getElementById('qty111').value = 0;
+            document.getElementById('unit11').value = 0;
+            document.getElementById('total11').value = 0;
+            
+            document.getElementById('bun2').style.display = 'none';
+            document.getElementById('product12').value = '';
+            document.getElementById('sku12').value = '';
+            document.getElementById('qty12').value = 0;
+            document.getElementById('qty121').value = 0;
+            document.getElementById('unit12').value = 0;
+            document.getElementById('total12').value = 0;
+            
+
+            document.getElementById('bun3').style.display = 'none';
+            document.getElementById('product13').value = '';
+            document.getElementById('sku13').value = '';
+            document.getElementById('qty13').value = 0;
+            document.getElementById('qty131').value = 0;
+            document.getElementById('unit13').value = 0;
+            document.getElementById('total13').value = 0;
+            
+            document.getElementById('bun4').style.display = 'none';
+            document.getElementById('product14').value = '';
+            document.getElementById('sku14').value = '';
+            document.getElementById('qty14').value = 0;
+            document.getElementById('qty141').value = 0;
+            document.getElementById('unit14').value = 0;
+            document.getElementById('total14').value = 0;
+            
+          }
+        }
+      });
+    });
+    $('#product2').on('change', function() {
+      select = $('#product2').val();
+      $.ajax({
+        type: "GET",
+        url: "{% url 'getitems' %}",
+        data: {
+          id: select
+        }
+      }).done(function(response) {
+        var json_data = JSON.parse(response);
+        for (key in json_data) {
+          document.getElementById('sku2').value = json_data[key]['sku'];
+          
+          document.getElementById('qty2').value = 0;
+          if (json_data[key]['initialqty'] == '' || json_data[key]['initialqty'] == undefined) {
+            document.getElementById('qtyspan1').innerHTML = '';
+          } else {
+            document.getElementById('qtyspan1').innerHTML = 'Available Quantity : ' + json_data[key]['initialqty'];
+          }
+          if (json_data[key]['item'] == 'bundle') {
+            document.getElementById('price2').value = 0;
+            document.getElementById('price2').style.display = 'none';
+            
+            document.getElementById('total2').style.display = 'none';
+            if (json_data[key]['qty1'] == undefined || json_data[key]['qty1'] == 0) {
+              document.getElementById('bun5').style.display = 'none';
+            } else {
+              document.getElementById('bun5').style.display = 'table-row';
+              document.getElementById('product21').value = json_data[key]['product1'];
+              document.getElementById('sku21').value = json_data[key]['sku1'];
+              document.getElementById('qty21').value = json_data[key]['qty1'];
+              document.getElementById('qty211').value = json_data[key]['qty1'];
+              document.getElementById('unit21').value = json_data[key]['price1'];
+              document.getElementById('total21').value = json_data[key]['total1'];
+              
+            }
+            if (json_data[key]['qty2'] == undefined || json_data[key]['qty2'] == 0) {
+              document.getElementById('bun6').style.display = 'none';
+            } else {
+              document.getElementById('bun6').style.display = 'table-row';
+              document.getElementById('product22').value = json_data[key]['product2'];
+              document.getElementById('sku22').value = json_data[key]['sku2'];
+              document.getElementById('qty22').value = json_data[key]['qty2'];
+              document.getElementById('qty221').value = json_data[key]['qty2'];
+              document.getElementById('unit22').value = json_data[key]['price2'];
+              document.getElementById('total22').value = json_data[key]['total2'];
+              
+            }
+            if (json_data[key]['qty3'] == undefined || json_data[key]['qty3'] == 0) {
+              document.getElementById('bun7').style.display = 'none';
+            } else {
+              document.getElementById('bun7').style.display = 'table-row';
+              document.getElementById('product23').value = json_data[key]['product3'];
+              document.getElementById('sku23').value = json_data[key]['sku3'];
+              document.getElementById('qty23').value = json_data[key]['qty3'];
+              document.getElementById('qty231').value = json_data[key]['qty3'];
+              document.getElementById('unit23').value = json_data[key]['price3'];
+              document.getElementById('total23').value = json_data[key]['total3'];
+              
+            }
+            if (json_data[key]['qty4'] == undefined || json_data[key]['qty4'] == 0) {
+              document.getElementById('bun8').style.display = 'none';
+            } else {
+              document.getElementById('bun8').style.display = 'table-row';
+              document.getElementById('product24').value = json_data[key]['product4'];
+              document.getElementById('sku24').value = json_data[key]['sku4'];
+              document.getElementById('qty24').value = json_data[key]['qty4'];
+              document.getElementById('qty241').value = json_data[key]['qty4'];
+              document.getElementById('unit24').value = json_data[key]['price4'];
+              document.getElementById('total24').value = json_data[key]['total4'];
+             
+            }
+          } else {
+            document.getElementById('price2').value = json_data[key]['salesprice'];
+            var inventory = document.getElementById('inventory').value;
+            if {inventory == '{{ man1.type }}') {
+              document.getElementById('price2').style.display = 'block';
+             
+              document.getElementById('total2').style.display = 'block';
+              
+            } else if ( inventory!= '{{ man1.type }}') {
+              document.getElementById('price2').style.display = 'block';
+              
+              document.getElementById('total2').style.display = 'block';
+              
+            }
+            document.getElementById('bun5').style.display = 'none';
+            document.getElementById('product21').value = '';
+            document.getElementById('sku21').value = '';
+            document.getElementById('qty21').value = 0;
+            document.getElementById('qty211').value = 0;
+            document.getElementById('unit21').value = 0;
+            document.getElementById('total21').value = 0;
+           
+
+            document.getElementById('bun6').style.display = 'none';
+            document.getElementById('product22').value = '';
+            document.getElementById('sku22').value = '';
+            document.getElementById('qty22').value = 0;
+            document.getElementById('qty221').value = 0;
+            document.getElementById('unit22').value = 0;
+            document.getElementById('total22').value = 0;
+            
+
+            document.getElementById('bun7').style.display = 'none';
+            document.getElementById('product23').value = '';
+            document.getElementById('sku23').value = '';
+            document.getElementById('qty23').value = 0;
+            document.getElementById('qty231').value = 0;
+            document.getElementById('unit23').value = 0;
+            document.getElementById('total23').value = 0;
+          
+
+            document.getElementById('bun8').style.display = 'none';
+            document.getElementById('product24').value = '';
+            document.getElementById('sku24').value = '';
+            document.getElementById('qty24').value = 0;
+            document.getElementById('qty241').value = 0;
+            document.getElementById('unit24').value = 0;
+            document.getElementById('total24').value = 0;
+         
+          }
+        }
+      });
+    });
+    $('#product3').on('change', function() {
+      select = $('#product3').val();
+      $.ajax({
+        type: "GET",
+        url: "{% url 'getitems' %}",
+        data: {
+          id: select
+        }
+      }).done(function(response) {
+        var json_data = JSON.parse(response);
+        for (key in json_data) {
+          document.getElementById('sku3').value = json_data[key]['sku'];
+         
+          document.getElementById('qty3').value = 0;
+          if (json_data[key]['initialqty'] == '' || json_data[key]['initialqty'] == undefined) {
+            document.getElementById('qtyspan2').innerHTML = '';
+          } else {
+            document.getElementById('qtyspan2').innerHTML = 'Available Quantity : ' + json_data[key]['initialqty'];
+          }
+          if (json_data[key]['item'] == 'bundle') {
+            document.getElementById('price3').value = 0;
+            document.getElementById('price3').style.display = 'none';
+          
+            document.getElementById('total3').style.display = 'none';
+            if (json_data[key]['qty1'] == undefined || json_data[key]['qty1'] == 0) {
+              document.getElementById('bun9').style.display = 'none';
+            } else {
+              document.getElementById('bun9').style.display = 'table-row';
+              document.getElementById('product31').value = json_data[key]['product1'];
+              document.getElementById('sku31').value = json_data[key]['sku1'];
+              document.getElementById('qty31').value = json_data[key]['qty1'];
+              document.getElementById('qty311').value = json_data[key]['qty1'];
+              document.getElementById('unit31').value = json_data[key]['price1'];
+              document.getElementById('total31').value = json_data[key]['total1'];
+              
+            }
+            if (json_data[key]['qty2'] == undefined || json_data[key]['qty2'] == 0) {
+              document.getElementById('bun10').style.display = 'none';
+            } else {
+              document.getElementById('bun10').style.display = 'table-row';
+              document.getElementById('product32').value = json_data[key]['product2'];
+              document.getElementById('sku32').value = json_data[key]['sku2'];
+              document.getElementById('qty32').value = json_data[key]['qty2'];
+              document.getElementById('qty321').value = json_data[key]['qty2'];
+              document.getElementById('unit32').value = json_data[key]['price2'];
+              document.getElementById('total32').value = json_data[key]['total2'];
+              
+            }
+            if (json_data[key]['qty3'] == undefined || json_data[key]['qty3'] == 0) {
+              document.getElementById('bun11').style.display = 'none';
+            } else {
+              document.getElementById('bun11').style.display = 'table-row';
+              document.getElementById('product33').value = json_data[key]['product3'];
+              document.getElementById('sku33').value = json_data[key]['sku3'];
+              document.getElementById('qty33').value = json_data[key]['qty3'];
+              document.getElementById('qty331').value = json_data[key]['qty3'];
+              document.getElementById('unit33').value = json_data[key]['price3'];
+              document.getElementById('total33').value = json_data[key]['total3'];
+              document.getElementById('tax33').value = json_data[key]['tax3'];
+            }
+            if (json_data[key]['qty4'] == undefined || json_data[key]['qty4'] == 0) {
+              document.getElementById('bun12').style.display = 'none';
+            } else {
+              document.getElementById('bun12').style.display = 'table-row';
+              document.getElementById('product34').value = json_data[key]['product4'];
+              document.getElementById('sku34').value = json_data[key]['sku4'];
+              document.getElementById('qty34').value = json_data[key]['qty4'];
+              document.getElementById('qty341').value = json_data[key]['qty4'];
+              document.getElementById('unit34').value = json_data[key]['price4'];
+              document.getElementById('total34').value = json_data[key]['total4'];
+              
+            }
+          } else {
+            document.getElementById('unit3').value = json_data[key]['salesprice'];
+            var inventory = document.getElementById('inventory').value;
+            if (inventory == '{{ man1.type}}') {
+              document.getElementById('price3').style.display = 'block';
+              
+              document.getElementById('total3').style.display = 'block';
+             
+            } else if (inventory != '{{ man1.type }}') {
+              document.getElementById('price3').style.display = 'block';
+              
+              document.getElementById('total3').style.display = 'block';
+              
+            }
+
+            document.getElementById('bun9').style.display = 'none';
+            document.getElementById('product31').value = '';
+            document.getElementById('sku31').value = '';
+            document.getElementById('qty31').value = 0;
+            document.getElementById('qty311').value = 0;
+            document.getElementById('unit31').value = 0;
+            document.getElementById('total31').value = 0;
+            
+
+            document.getElementById('bun10').style.display = 'none';
+            document.getElementById('product32').value = '';
+            document.getElementById('sku32').value = '';
+            document.getElementById('qty32').value = 0;
+            document.getElementById('qty321').value = 0;
+            document.getElementById('unit32').value = 0;
+            document.getElementById('total32').value = 0;
+           
+
+            document.getElementById('bun11').style.display = 'none';
+            document.getElementById('product33').value = '';
+            document.getElementById('sku33').value = '';
+            document.getElementById('qty33').value = 0;
+            document.getElementById('qty331').value = 0;
+            document.getElementById('unit33').value = 0;
+            document.getElementById('total33').value = 0;
+            
+
+            document.getElementById('bun12').style.display = 'none';
+            document.getElementById('product34').value = '';
+            document.getElementById('sku34').value = '';
+            document.getElementById('qty34').value = 0;
+            document.getElementById('qty341').value = 0;
+            document.getElementById('unit34').value = 0;
+            document.getElementById('total34').value = 0;
+          
+          }
+        }
+      });
+    });
+    $('#product4').on('change', function() {
+      select = $('#product4').val();
+      $.ajax({
+        type: "GET",
+        url: "{% url 'getitems' %}",
+        data: {
+          id: select
+        }
+      }).done(function(response) {
+        var json_data = JSON.parse(response);
+        for (key in json_data) {
+          document.getElementById('sku4').value = json_data[key]['sku'];
+          document.getElementById('description4').value = json_data[key]['description'];
+          document.getElementById('qty4').value = 0;
+          if (json_data[key]['initialqty'] == '' || json_data[key]['initialqty'] == undefined) {
+            document.getElementById('qtyspan3').innerHTML = '';
+          } else {
+            document.getElementById('qtyspan3').innerHTML = 'Available Quantity : ' + json_data[key]['initialqty'];
+          }
+          if (json_data[key]['item'] == 'bundle') {
+            document.getElementById('price4').value = 0;
+            document.getElementById('price4').style.display = 'none';
+            document.getElementById('total4').style.display = 'none';
+            if (json_data[key]['qty1'] == undefined || json_data[key]['qty1'] == 0) {
+              document.getElementById('bun13').style.display = 'none';
+            } else {
+              document.getElementById('bun13').style.display = 'table-row';
+              document.getElementById('product41').value = json_data[key]['product1'];
+              document.getElementById('sku41').value = json_data[key]['sku1'];
+              document.getElementById('qty41').value = json_data[key]['qty1'];
+              document.getElementById('qty411').value = json_data[key]['qty1'];
+              document.getElementById('unit41').value = json_data[key]['price1'];
+              document.getElementById('total41').value = json_data[key]['total1'];
+              
+            }
+            if (json_data[key]['qty2'] == undefined || json_data[key]['qty2'] == 0) {
+              document.getElementById('bun14').style.display = 'none';
+            } else {
+              document.getElementById('bun14').style.display = 'table-row';
+              document.getElementById('product42').value = json_data[key]['product2'];
+              document.getElementById('sku42').value = json_data[key]['sku2'];
+              document.getElementById('qty42').value = json_data[key]['qty2'];
+              document.getElementById('qty421').value = json_data[key]['qty2'];
+              document.getElementById('unit42').value = json_data[key]['price2'];
+              document.getElementById('total42').value = json_data[key]['total2'];
+             
+            }
+            if (json_data[key]['qty3'] == undefined || json_data[key]['qty3'] == 0) {
+              document.getElementById('bun15').style.display = 'none';
+            } else {
+              document.getElementById('bun15').style.display = 'table-row';
+              document.getElementById('product43').value = json_data[key]['product3'];
+              document.getElementById('sku43').value = json_data[key]['sku3'];
+              document.getElementById('qty43').value = json_data[key]['qty3'];
+              document.getElementById('qty431').value = json_data[key]['qty3'];
+              document.getElementById('unit43').value = json_data[key]['price3'];
+              document.getElementById('total43').value = json_data[key]['total3'];
+              
+            }
+            if (json_data[key]['qty4'] == undefined || json_data[key]['qty4'] == 0) {
+              document.getElementById('bun16').style.display = 'none';
+            } else {
+              document.getElementById('bun16').style.display = 'table-row';
+              document.getElementById('product44').value = json_data[key]['product4'];
+              document.getElementById('sku44').value = json_data[key]['sku4'];
+              document.getElementById('qty44').value = json_data[key]['qty4'];
+              document.getElementById('qty441').value = json_data[key]['qty4'];
+              document.getElementById('unit44').value = json_data[key]['price4'];
+              document.getElementById('total44').value = json_data[key]['total4'];
+             
+            }
+          } else {
+            document.getElementById('price4').value = json_data[key]['salesprice'];
+            var inventory = document.getElementById('inventory').value;
+            if (inventory  == '{{man1.type }}') {
+              document.getElementById('price4').style.display = 'block';
+              document.getElementById('total4').style.display = 'block';
+              
+pe            } else if (inventory = '{{ man1.type }}') {
+              document.getElementById('price4').style.display = 'block';
+              document.getElementById('total4').style.display = 'block';
+              
+            }
+            document.getElementById('bun13').style.display = 'none';
+            document.getElementById('product41').value = '';
+            document.getElementById('sku41').value = '';
+            document.getElementById('qty41').value = 0;
+            document.getElementById('qty411').value = 0;
+            document.getElementById('unit41').value = 0;
+            document.getElementById('total41').value = 0;
+         
+
+            document.getElementById('bun14').style.display = 'none';
+            document.getElementById('product42').value = '';
+            document.getElementById('sku42').value = '';
+            document.getElementById('qty42').value = 0;
+            document.getElementById('qty421').value = 0;
+            document.getElementById('unit42').value = 0;
+            document.getElementById('total42').value = 0;
+           
+
+            document.getElementById('bun15').style.display = 'none';
+            document.getElementById('product43').value = '';
+            document.getElementById('sku43').value = '';
+            document.getElementById('qty43').value = 0;
+            document.getElementById('qty431').value = 0;
+            document.getElementById('unit43').value = 0;
+            document.getElementById('total43').value = 0;
+            
+
+            document.getElementById('bun16').style.display = 'none';
+            document.getElementById('product44').value = '';
+            document.getElementById('sku44').value = '';
+            document.getElementById('qty44').value = 0;
+            document.getElementById('qty441').value = 0;
+            document.getElementById('unit44').value = 0;
+            document.getElementById('total44').value = 0;
+            
+          }
+        }
+      });
+    });
+
+    
+    ).trigger('change');
+  });
+</script>
+
+<div class="row">
+         
+        <div class="col-sm-6">
+            <h4 class="text-center alert alert-dark">Coproducts/Scrap</h4> 
+            
+      
+<form action="addcomponents" method="post" class="needs-validation" novalidate>
+  {% csrf_token %}
+ 
+    <div class="card radius-15">
+      <div class="card-body">
+        <div id="invoice">
+
+          
+            
+             
+            
+            
+            
+          <div class="row clearfix">
+            <div class="col-md-12 table-responsive-md mt-3">
+              <table class="table table-bordered table-hover mt-3" id="tab_logic">
+                <thead>
+                  <tr>
+                    <th class="text-center">#</th>
+                    <th class="text-center">PRODUCT </th>
+                    <th class="text-center">SKU</th>
+                    <th class="text-center">QUANTITY</th>
+                    <th class="text-center">PRICE</th>
+                    <th class="text-center">TOTAL</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id='addr0'>
+                    <td>1</td>
+                    <td>
+                       
+                                
+                                <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>       
+                     
+                    <td><input type="text" name='sku' id="sku1" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='qty' onchange="qtychange1(this)" placeholder='Enter Qty' id="qty1" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price' id="price1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun1' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product11' id="product11" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku11' id="sku11" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td><input type="number" name='qty11' placeholder='Enter Qty' id="qty11" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty111" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price11' id="unit11" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total11' id="total11" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td style="display: none;"><input type="number" step="any" name='taxamount11' id="taxamount11" class="form-control taxamount" readonly />
+                    </td>
+                  </tr>
+                  <tr id='bun2' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product12' id="product12" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku12' id="sku12" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='qty12' placeholder='Enter Qty' id="qty12" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty121" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price12' id="unit12" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total12' id="total12" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun3' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product13' id="product13" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='SKU13' id="SKU13" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='qty13' placeholder='Enter Qty' id="qty13" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                     <input type="number" placeholder='Enter Qty' id="qty131" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price13' id="unit13" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total13' id="total13" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td style="display: none;"><input type="number" step="any" name='taxamount13' id="taxamount13" class="form-control taxamount" readonly />
+                    </td>
+                  </tr>
+                  <tr id='bun4' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product14' id="product14" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='SKU14' id="sku14" placeholder='Enter SKU' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td><input type="number" name='qty14' placeholder='Enter Qty' id="qty14" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty141" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price14' id="unit14" placeholder='Enter Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total14' id="total14" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                   
+                    </td>
+                  </tr>
+                  <tr id='addr0'>
+                    <td>2</td>
+                    <td>
+                     <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>   
+                      {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
+                    </td>
+                    <td><input type="text" name="SKU2" id="sku2" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name="qty2" value=0 onchange="qtychange2(this)" placeholder='Enter Qty' id="qty2" class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan1" class='text-muted'></span>
+                    </td>
+                    <td><input type="text" name="price2" id="price2" placeholder='Enter Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name="total2" id="total2" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun5' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product21' id="product21" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='SKU21' id="sku21" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td><input type="number" name='qty21' placeholder='Enter Qty' id="qty21" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty211" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price21' id="unit21" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total21' id="total21" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun6' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product22' id="product22" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='SKU22' id="sku22" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                   
+                    <td><input type="number" name='qty22' placeholder='Enter Qty' id="qty22" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty221" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price22' id="unit22" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total22' id="total22" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun7' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product23' id="product23" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku23' id="sku23" placeholder='Enter SKU code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                   
+                    <td><input type="number" name='qty23' placeholder='Enter Qty' id="qty23" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty231" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price23' id="unit23" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total23' id="total23" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                   
+                  </tr>
+                  <tr id='bun8' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product24' id="product24" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku24' id="sku24" placeholder='Enter SKUCode' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                   
+                    <td><input type="number" name='qty24' placeholder='Enter Qty' id="qty24" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty241" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price24' id="unit24" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total24' id="total24" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                   
+                    
+                  </tr>
+                  <tr id='addr0'>
+                    <td>3</td>
+                    <td>
+                      <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>   
+                      {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
+                    </td>
+                    <td><input type="text" name="sku3" id="sku3" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name="qty3" id="qty3" placeholder='Enter Qty' value=0 onchange="qtychange3(this)" class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan2" class='text-muted'></span>
+                    </td>
+                    <td><input type="text" name="price3" id="price3" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name="total3" id="total3" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun9' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product31' id="product31" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku31' id="sku31" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                   
+                    <td><input type="number" name='qty31' placeholder='Enter Qty' id="qty31" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty311" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price31' id="unit31" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total31' id="total31" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun10' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product32' id="product32" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku32' id="sku32" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                   
+                    <td><input type="number" name='qty32' placeholder='Enter Qty' id="qty32" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty321" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price32' id="unit32" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total32' id="total32" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun11' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product33' id="product33" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku33' id="sku33" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td><input type="number" name='qty33' placeholder='Enter Qty' id="qty33" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty331" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price33' id="unit33" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total33' id="total33" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                  </tr>
+                  <tr id='bun12' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product34' id="product34" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku34' id="sku34" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td><input type="number" name='qty34' placeholder='Enter Qty' id="qty34" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty341" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price34' id="unit34" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total34' id="total34" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                   
+                  </tr>
+                  <tr id='addr0'>
+                    <td>4</td>
+                    <td>
+                      <select class="form-control" name="productname">
+                                    {% for i in obj %}
+                                    <option value="none" selected disabled hidden>Select Product</option>
+                                    <option value="{{ i }}" >{{ i }}</option>
+                                    {% endfor %}
+                                    
+                                </select>   
+                      {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
+                    </td>
+                    <td><input type="text" name="sku4" id="sku4" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
+                    
+                    <td><input type="number" name="qty4" value=0 placeholder='Enter Qty' onchange="qtychange4(this)" class="form-control qty" id="qty4" step=0 min=0 style="background-color: #2f516f; color: white;" />
+                      <span id="qtyspan3" class='text-muted'></span>
+                    </td>
+                    <td><input type="text" name="price4" id="price4" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name="total4" id="total4" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun13' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product41' id="product41" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku41' id="sku41" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="text" name='description41' id="description41" placeholder='Description' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='qty41' placeholder='Enter Qty' id="qty41" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty411" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price41' id="unit41" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total41' id="total41" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                  <tr id='bun14' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product42' id="product42" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku42' id="sku42" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td><input type="number" name='qty42' placeholder='Enter Qty' id="qty42" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty421" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price42' id="unit42" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total42' id="total42" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                  </tr>
+                  <tr id='bun15' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product43' id="product43" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku43' id="sku43" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                    
+                    <td><input type="number" name='qty43' placeholder='Enter Qty' id="qty43" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty431" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price43' id="unit43" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total43' id="total43" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                   
+                    
+                  </tr>
+                  <tr id='bun16' style="display: none;">
+                    <td></td>
+                    <td>
+                      <input name='product44' id="product44" class="form-control" style="background-color: #2f516f; color: white;" readonly>
+                    </td>
+                    <td><input type="text" name='sku44' id="sku44" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" readonly /></td>
+                   
+                    <td><input type="number" name='qty44' placeholder='Enter Qty' id="qty44" value=0 class="form-control qty" step=0 min=0 style="background-color: #2f516f; color: white;" readonly />
+                      <input type="number" placeholder='Enter Qty' id="qty441" value=0 class="form-control" step=0 min=0 style="background-color: #2f516f; color: white;" hidden />
+                      <span id="qtyspan" class='text-muted'></span>
+                    </td>
+                    <td><input type="number" name='price44' id="unit44" placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" readonly /></td>
+                    <td><input type="number" name='total44' id="total44" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    
+                    
+                  </tr>
+                </tbody>
+              </table>
+
             </div>
+          </div>
+          <div class="row clearfix" style="margin-top:20px">
+            <div class="col-md-7 mt-3"></div>
+            <div class="col-md-5 table-responsive-md mt-3">
+              <table class="table table-bordered table-hover" id="tab_logic_total">
+                <tbody>
+                 
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-sm-4">
+                                            <label for="cost of components">Cost of Components:</label>
+                                             <input type="number" name="cost of components" class="form-control" id="cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+ <div class="container" id="three">
+
+                                    <div class="row" style="display: inline-flex;">
+
+
+
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost">Type of Addtnl Cost</label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage">Percentage</label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount">Amount</label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost"></label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage"></label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount"></label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost"></label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage"></label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount"></label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="type of additional cost"></label>
+                                             <input type="text" name="type of additional cost" class="form-control" id="type of additional cost"
+                                                   style="width: 100%;" > 
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="percentage"></label>
+                                            <input type="number" name="percentage" class="form-control" id="percentage"
+                                                   style="width: 100%;" >
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="amount"></label>
+                                            <input type="number" name="amount" class="form-control" id="amount"
+                                                   style="width: 100%;" >
+                                        </div>
+
+                                    </div> 
+                                   </div>
+                                  <div class="col-sm-4">
+                                            <label for="total additional cost">Total Addl Cost:</label>
+                                             <input type="number" name="total additional cost" class="form-control" id="total additional cost"
+                                                   style="width: 100%;" > 
+
+                                  </div> 
+
+                                  <div class="col-sm-4">
+                                            <label for="effective cost">Effective Cost:</label>
+                                             <input type="number" name="effective cost" class="form-control" id="effective cost"
+                                                   style="width: 100%;" > 
+
+                                  </div>
+                                  <div class="col-sm-6">
+                                            <label for="effective rate of primary item">Effective rate of primary item:</label>
+                                             <input type="number" name="effective rate of primary item" class="form-control" id="effective rate of primary item"
+                                                   style="width: 100%;" > 
+
+                                  </div>  
+                          
+<div class="row mt-4 mb-4"> 
+
+                            <div class="col-sm-8">
+                                <button type="submit" class="btn btn-outline-info w-75 text-light rounded-pill pull-right">Save
+                                </button>
+                            </div>
+
+                  </div>       
+          
+                       
+          
+
           </div>
           
          
@@ -1789,6 +2793,9 @@ pe            } else if (inventory = '{{ man1.type }}') {
     ).trigger('change');
   });
 </script>
-{% endblock %}
+
+
+
+ {% endblock %} 
 
 

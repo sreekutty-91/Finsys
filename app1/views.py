@@ -32673,8 +32673,8 @@ def materialcreate(request):
     return redirect('materialview')
 
 def addcomponents(request):
-    try:
-        man1 = rawmaterials.objects.get(pnid=id)
+    
+        man1 = rawmaterials.objects.get(rawmaterialsid=id)
         manf =rawmaterials(
                        product=request.POST['product'], sku=request.POST['sku'],
                      
@@ -32750,40 +32750,33 @@ def addcomponents(request):
             } 
     
          
-    for (p, q, tl) in zip(product, qty, totals):
-        try:
-                if inventory.objects.get(name=p, pnid=man1):
+        for (p, q, tl) in zip(product, qty, totals):
+        
+            try:
+                if inventory.objects.get(name=p,cid=man1):
                     invent = inventory.objects.get(name=p, pnid=man1)
                     invent.initialqty = int(invent.initialqty) - int(q)
                     invent.save()
                     price = float(invent.cost)
-        except:
-                     pass   
+            except:
+                      pass   
                     
                     
                     
-        try:
-            if noninventory.objects.get(name=p, pnid=man1):
+            try:
+               if noninventory.objects.get(name=product, cid=man1):
                     noninvent = noninventory.objects.get(name=p, pnid=man1)
                     noninvent.qty = int(noninvent.qty) - int(q)
                     noninvent.save()
                     price = float(noninvent.cost)
 
-        except:
+            except:
                      pass   
-                    
-
-                    
-            
-                    
-    #  except:
-    #             pass
-        
-    except:
+                 
         return render(request,'app1/addmaterial.html',context)
 
 def getcomponents1(request):
-    man1 = rawmaterials.objects.get(pnid=id)
+    man1 = rawmaterials.objects.get(cid=id)
     id = request.GET.get('id')
     x = id.split()
     a = x[0]
@@ -32793,7 +32786,7 @@ def getcomponents1(request):
         
         b = x[1] + " " + x[2]
         
-        inventoryobject = inventory.objects.filter( pnid= man1)
+        inventoryobject = inventory.objects.filter( cid= man1)
         for i in inventoryobject:
             if i.name != '0.0':
                 dict = { 'inventoryid': i.inventoryid,
@@ -32816,7 +32809,7 @@ def getcomponents1(request):
                 list.append(dict)
     else:
         
-        noninventoryobject = noninventory.objects.filter( pnid=man1)
+        noninventoryobject = noninventory.objects.filter( cid=man1)
         for i in noninventoryobject:
             if i.name != '0.0':
                 dict = {'noninventoryid': i.noninventoryid,
