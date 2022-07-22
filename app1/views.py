@@ -32736,13 +32736,7 @@ def addcomponents(request):
     
     
         print(ls)
-    # toda = date.today()
-    # s1 = toda.strftime("%Y-%m-%d")
-    # ks=[]
-    # var3=employee.objects.all()
-    # for k in var3:
-    #     ks.append(k.department)
-    #     print(ks)
+    
         
         context={
         
@@ -32764,7 +32758,7 @@ def addcomponents(request):
                     
                     
             try:
-               if noninventory.objects.get(name=product, cid=man1):
+               if noninventory.objects.get(name=p, cid=man1):
                     noninvent = noninventory.objects.get(name=p, pnid=man1)
                     noninvent.qty = int(noninvent.qty) - int(q)
                     noninvent.save()
@@ -32987,8 +32981,13 @@ def searchBarprice(request):
         query=request.GET.get('query')
         if query:
 
-           products=pricetable.objects.filter(productname__contains=query)
-           return render(request,'app1/searchbarprice.html',{'products':products})
+           product1=pricetable.objects.filter(productname__contains=query)
+           product2=inventory.objects.filter(name__contains=query)
+           product3=noninventory.objects.filter(name__contains=query)
+           context= {'product1':product1,'product2':product2,'product3':product3
+
+           }
+           return render(request,'app1/searchbarprice.html',context)
         else:
             print("No results found")
             return render(request,'app1/searchbar.html',{})
