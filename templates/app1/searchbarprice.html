@@ -3,7 +3,7 @@
  <h2 class="text-center">Search Results</h5>
  <hr>
  <div class="container">
- {%if products%}
+ 
   <div class="col-sm-12">
                         <table class="table text-center ">
                             <thead>
@@ -21,28 +21,42 @@
 
                                 
                             <tbody>
+                               
                                 {% for product in product1 %}
                                 <tr>
                                     <td class="pt-4">{{ product.productname }}</td>
                                     <td class="pt-4">{{ product.sku }}</td>
                                     <td class="pt-4">{{ product.price}}</td>
                                     
-                                  
-                                   
-                            </td> 
-                                   
-                                    
-                                
                                 </tr>
                                 {% endfor %}
+
+                                 {% for product in product2 %}
+                                <tr>
+                                    <td class="pt-4">{{ product.name }}</td>
+                                    <td class="pt-4">{{ product.sku }}</td>
+                                    <td class="pt-4">{{ product.price}}</td>
+                                    
+                                </tr>
+                                {% endfor %}
+                                {% for product in product3%}
+                                <tr>
+                                    <td class="pt-4">{{ product.name }}</td>
+                                    <td class="pt-4">{{ product.sku }}</td>
+                                    <td class="pt-4">{{ product.price}}</td>
+                                    
+                                </tr>
+                                {% endfor %}
+
+
                             
                               </tbody>
                         </table>
                     </div>
 
-{% else %}
-<p>No Products found</p>
-{% endif %}
+
+
+
 </div> 
 
 <div class="col-sm-1"></div>

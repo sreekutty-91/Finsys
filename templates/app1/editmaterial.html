@@ -18,18 +18,18 @@
                                     <div class="row" style="display: inline-flex;">
                                         <div class="col-sm-4">
                                             <label for="productname">Product Name</label>
-                                            <input type="text" name="productname"  value="{{ var.productname}}"class="form-control" 
+                                            <input type="text" name="productname"  value="{{var.productname}}"class="form-control" 
                                                    placeholder=" "
                                                    style="width: 100%;">
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="sku">SKU</label>
-                                            <input type="number" name="sku"  value="{{ var.sku}}" class="form-control" 
+                                            <input type="number" name="sku"  value="{{var.sku}}" class="form-control" 
                                                    style="width: 100%;" >
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="hsn">HSN</label>
-                                            <input type="number" name="hsn"  value="{{ var.hsn}}" class="form-control" 
+                                            <input type="number" name="hsn"  value="{{var.hsn}}" class="form-control" 
                                                    style="width: 100%;" >
                                         </div>
                                     </div>
@@ -40,13 +40,13 @@
                                     <div class="row" style="display: inline-flex;">
                                         <div class="col-sm-4">
                                             <label for="quantity">Quantity</label>
-                                            <input type="number" name="quantity"  value="{{ var.quantity }}"class="form-control" 
+                                            <input type="number" name="quantity"  value="{{var.quantity}}"class="form-control" 
                                                    placeholder=" "
                                                    style="width: 100%;">
                                         </div>
                                         <div class="col-sm-4">
                                             <label for="manufacturing_date">Manufacturing Date</label>
-                                            <input type="date" name="manufacturing_date"  value="{{ var.manufacturing_date }}" class="form-control" 
+                                            <input type="date" name="manufacturing_date"  value="{{var.manufacturing_date }}" class="form-control" 
                                                    placeholder=" "
                                                    style="width: 100%;" >
                                         </div>
@@ -60,7 +60,7 @@
                 </div> 
                 <br>
                 
-                <button type="submit" class="btn btn-success mt-3 w-100">EDIT</button>
+               <button type="submit" class="btn btn-success mt-3 w-100">EDIT</button>
               
             </form>  
 {% endblock %}               

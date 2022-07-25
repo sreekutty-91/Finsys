@@ -1,3 +1,4 @@
+from click import Context
 from django.conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
@@ -32974,23 +32975,30 @@ def addprice(request):
 
 def viewprice(request):
    mdata = pricetable.objects.all()
+   mdata1=inventory.objects.all()
+   mdata2=noninventory.objects.all()
    return render(request,'app1/viewprice.html',{'mdata':mdata})
 
 def searchBarprice(request):
   if request.method=='GET':
         query=request.GET.get('query')
+        print('hai',query)
         if query:
 
            product1=pricetable.objects.filter(productname__contains=query)
            product2=inventory.objects.filter(name__contains=query)
            product3=noninventory.objects.filter(name__contains=query)
+           print('hai',query)
            context= {'product1':product1,'product2':product2,'product3':product3
 
            }
+
            return render(request,'app1/searchbarprice.html',context)
         else:
             print("No results found")
-            return render(request,'app1/searchbar.html',{})
+            return render(request,'app1/searchbarprice.html',{})
+   
+
    
 
 
@@ -32998,6 +33006,7 @@ def searchBarprice(request):
 def editmaterial(request,id):
     var=production.objects.get(id=id)
     context={'var':var}
+    print('hai',var.id)
     return render(request,'app1/editmaterial.html',context)
 
 
@@ -33013,6 +33022,7 @@ def updatematerial(request,id):
           var.manufacturing_date=request.POST.get('manufacturing_date') 
           var.expiry_date=request.POST.get('expiry_date') 
           var.save()
+          
           return redirect('materialview')
     return render(request,'app1/editmaterial.html')  
           
@@ -33024,7 +33034,8 @@ def deletematerial(request,id):
 
 def editpricepage(request,id):
     mdata=pricetable.objects.get(id=id)
-    return render(request,'app1/editprice.html',{'mdata':mdata})
+    context={'mdata':mdata}
+    return render(request,'app1/editprice.html',context)
 
 
 

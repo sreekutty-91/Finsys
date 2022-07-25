@@ -1296,7 +1296,7 @@ $('#addRowChild1').click(function(){
 <script>
   $(document).ready(function() {
     
-    $('#product').on('change', function() {
+    $('#product').on('change', function()){
       select = $('#product').val();
       $.ajax({
         type: "GET",
@@ -1333,6 +1333,7 @@ $('#addRowChild1').click(function(){
               document.getElementById('qty121').value = json_data[key]['qty2'];
               document.getElementById('unit12').value = json_data[key]['price2'];
               document.getElementById('total12').value = json_data[key]['total2'];
+              
               
             }
             if (json_data[key]['qty3'] == undefined || json_data[key]['qty3'] == 0) {

@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-sm-3"></div>
 
-    <form action="{%url 'search' %}" method="get" class="d-flex"> 
+    <form action="{%url 'search1' %}" method="get" class="d-flex"> 
       <input class="form-control me-2" type="text"  name="query" placeholder="Search..." aria-label="Search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
@@ -29,6 +29,7 @@
                                     
                                     
                                 </tr>
+
                             </thead>    
                                 
 
@@ -44,7 +45,7 @@
                                      <button type="button" class="btn btn-outline-info dropdown-toggle text-grey" data-toggle="dropdown">Actions
                                      </button>
                                      <div class="dropdown-menu" style="background-color: white;">
-                                     <a href="editprice/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>EDIT</b></i></a>
+                                     <a href="editpricepage/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>EDIT</b></i></a>
                                      <a href="deleteprice/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>DELETE</b></i></a>
                                      </div>
                                     </div>
@@ -56,6 +57,50 @@
                                 
                                 </tr>
                                 {% endfor %}
+                             {% for m in mdata1 %}
+                                <tr>
+                                    <td class="pt-4">{{ m.name }}</td>
+                                    <td class="pt-4">{{ m.sku }}</td>
+                                    <td class="pt-4">{{ m.salesprice}}</td>
+                                    <td>
+                                    <div class="dropdown">
+                                     <button type="button" class="btn btn-outline-info dropdown-toggle text-grey" data-toggle="dropdown">Actions
+                                     </button>
+                                     <div class="dropdown-menu" style="background-color: white;">
+                                     <a href="editpricepage/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>EDIT</b></i></a>
+                                     <a href="deleteprice/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>DELETE</b></i></a>
+                                     </div>
+                                    </div>
+                                  </td>
+                                   
+                            </td> 
+                                   
+                                    
+                                
+                                </tr>
+                                {% endfor %}
+                                {% for m in mdata2 %}
+                                <tr>
+                                    <td class="pt-4">{{ m.name }}</td>
+                                    <td class="pt-4">{{ m.sku }}</td>
+                                    <td class="pt-4">{{ m.saleprice}}</td>
+                                    <td>
+                                    <div class="dropdown">
+                                     <button type="button" class="btn btn-outline-info dropdown-toggle text-grey" data-toggle="dropdown">Actions
+                                     </button>
+                                     <div class="dropdown-menu" style="background-color: white;">
+                                     <a href="editpricepage/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>EDIT</b></i></a>
+                                     <a href="deleteprice/{{ m.id }}" class="dropdown-item" style="color: black; font-size: 15px;"><i class="bx bx-edit"><b>DELETE</b></i></a>
+                                     </div>
+                                    </div>
+                                  </td>
+                                   
+                            </td> 
+                                   
+                                    
+                                
+                                </tr>
+                                {% endfor %}   
                             
                               </tbody>
                         </table>

@@ -365,7 +365,7 @@ urlpatterns = [
     re_path(r'^pricelisthome$',views.pricelisthome,name='pricelisthome'),
     re_path(r'^addprice$',views.addprice,name='addprice'),
     re_path(r'^viewprice$',views.viewprice,name='viewprice'),
-    re_path(r'^search/$',views.searchBarprice,name='search'),
+    re_path(r'^search1/$',views.searchBarprice,name='search1'),
 
     re_path(r'^editmaterial/(?P<id>\d+)$',views.editmaterial,name='editmaterial'),
     re_path(r'^updatematerial/(?P<id>\d+)$',views.updatematerial,name='updatematerial'),
