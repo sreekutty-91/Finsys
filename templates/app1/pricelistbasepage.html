@@ -2,41 +2,28 @@
 {% block body %}
     {% load static %}
 
+
+
 <style>
-
-.button {
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+.button{
+    background-color: #01AAAD;
+    font color:black;
+    width: 150px;
+    margin:0 60px;
+    display:inline-block;
+    line-height: 60px;
 }
-
-.button1 {background-color: #4CAF50;} 
-.button2 {background-color: #008CBA;}
-
-.flex-parent {
-  display: flex;
+.row{
+  text-align:center;
+  /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+  margin-left:300px;
+  margin-right:300px;
 }
-
-.jc-center {
-  justify-content: center;
-}
-
-
-</style>
-
-<div class="flex-parent jc-center">
-  <button class="button button1"><a href="{% url 'addprice' %}" >CREATE</button>
-</div>
-
-<div class="flex-parent jc-center">
-  <button class="button button2"><a href="{% url 'viewprice' %}">VIEW</button>
-</div>
+</Style>
+<div class="row">
+ <button class="button button1"><a href="{% url 'addprice' %}" >CREATE</button>
+ <button class="button button2"><a href="{% url 'viewprice' %}">VIEW</button>  
+ </div>
 
 
 

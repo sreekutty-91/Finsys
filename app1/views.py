@@ -32669,8 +32669,7 @@ def materialcreate(request):
             
         
     return render(request,'app1/addmaterial.html',context)
-
-          
+    
     return redirect('materialview')
 
 def addcomponents(request):
@@ -33022,9 +33021,10 @@ def updatematerial(request,id):
           var.manufacturing_date=request.POST.get('manufacturing_date') 
           var.expiry_date=request.POST.get('expiry_date') 
           var.save()
+          context={'var':var}
           
           return redirect('materialview')
-    return render(request,'app1/editmaterial.html')  
+    return render(request,'app1/editmaterial.html',context)  
           
           
 def deletematerial(request,id):
@@ -33048,8 +33048,9 @@ def editprice(request,id):
              mdata.sku=request.POST.get('sku') 
              mdata.price=request.POST.get('price') 
              mdata.save()
+             context={'mdata':mdata}
              return redirect('viewprice')
-    return render(request,'app1/editprice.html')
+    return render(request,'app1/editprice.html',context)
 
 def deleteprice(request,id):
     mdata=pricetable.objects.get(id=id)

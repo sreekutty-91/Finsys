@@ -1087,7 +1087,7 @@ $('#addRowChild1').click(function(){
                                     {% endfor %}
                                     
                                 </select>   
-                      {#                                                <button type="button" class="btn btn-outline-secondary ml-1">+</button>#}
+                                                                    {% comment %} <button type="button" class="btn btn-outline-secondary ml-1">+</button> {% endcomment %}
                     </td>
                     <td><input type="text" name="sku3" id="sku3" placeholder='Enter SKU Code' class="form-control" style="background-color: #2f516f; color: white;" /></td>
                     
@@ -1786,7 +1786,7 @@ pe            } else if (inventory = '{{ man1.type }}') {
   });
 </script>
 
-<div class="row">
+
          
         <div class="col-sm-6">
             <h4 class="text-center alert alert-dark">Coproducts/Scrap</h4> 
@@ -1838,7 +1838,7 @@ pe            } else if (inventory = '{{ man1.type }}') {
                       <span id="qtyspan" class='text-muted'></span>
                     </td>
                     <td><input type="number" name='price' id="price1" placeholder='Enter  Price' class="form-control price" step="0.00" min="0" style="background-color: #2f516f; color: white;" /></td>
-                    <td><input type="number" name='total' id="total1" placeholder=0 class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
+                    <td><input type="number" name='total' id="total1" placeholder="" class="form-control total" value=0 step="any" readonly style="background-color: #2f516f; color: white;" /></td>
                     
                     
                   </tr>
